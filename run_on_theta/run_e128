@@ -1,0 +1,79 @@
+mkdir np_1024
+cd np_128
+cp ../e128.* .
+cp ../SIZEu .
+cp ../SESSION* .
+cp ../nekcem .
+cp ../submit.sh .
+qsub -n 2 ./submit.sh 64
+cd ..
+
+mkdir np_64
+cd np_64
+cp ../e128.* .
+cp ../SIZEu .
+cp ../SESSION* .
+cp ../nekcem .
+cp ../submit.sh .
+qsub -n 1 ./submit.sh 64
+cd ..
+
+mkdir np_32
+cd np_32
+cp ../e128.* .
+cp ../SIZEu .
+cp ../SESSION* .
+cp ../nekcem .
+cp ../submit.sh .
+qsub -n 1 ./submit.sh 32 
+cd ..
+
+mkdir np_16
+cd np_16
+cp ../e128.* .
+cp ../SIZEu .
+cp ../SESSION* .
+cp ../nekcem .
+cp ../submit.sh .
+qsub -n 1 ./submit.sh 16
+cd ..
+
+mkdir np_8
+cd np_8
+cp ../e128.* .
+cp ../SIZEu .
+cp ../SESSION* .
+cp ../nekcem .
+cp ../submit.sh .
+qsub -n 1 ./submit.sh 8
+cd ..
+
+mkdir np_4
+cd np_4
+cp ../e128.* .
+cp ../SIZEu .
+cp ../SESSION* .
+cp ../nekcem .
+cp ../submit.sh .
+qsub -n 1 ./submit.sh 4
+cd ..
+
+mkdir np_2
+cd np_2
+cp ../e128.* .
+cp ../SIZEu .
+cp ../SESSION* .
+cp ../nekcem .
+cp ../submit.sh .
+qsub -n 1 ./submit.sh 2
+cd ..
+
+mkdir np_1
+cd np_1
+cp ../e128.* .
+cp ../SIZEu .
+cp ../SESSION* .
+cp ../nekcem .
+cp ../submit.sh .
+qsub -n 1 ./submit.sh 1
+cd ..
