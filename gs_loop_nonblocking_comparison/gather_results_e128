@@ -1,0 +1,7 @@
+sample="timing3_new_loops"
+for file in np*/*output
+ do
+  procs=$(echo $file | cut -f1 -d"/")
+  new_file=~/nekcem_results/e128_theta/${procs}_logfile_${sample}
+  mv $file $new_file
+ done
