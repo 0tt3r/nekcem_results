@@ -1,0 +1,36 @@
+set title 'Theta e128 Timings - 7th order'
+set logscale x
+set logscale y
+set terminal png enhanced
+set xlabel "Number of MPI Ranks"
+set ylabel "Time (s)"
+set output 'theta_e128_7.png'
+plot 'timing1_7_new_loops_e128_theta' u 1:2 w lp t 'Timing 1 - New', 'timing2_7_new_loops_e128_theta' u 1:2 w lp t 'Timing 2 - New', 'timing3_7_new_loops_e128_theta' u 1:2 w lp t 'Timing 3 - New', 'timing1_7_old_loops_e128_theta' u 1:2 w lp t 'Timing 1 - Old', 'timing2_7_old_loops_e128_theta' u 1:2 w lp t 'Timing 2 - Old', 'timing3_7_old_loops_e128_theta' u 1:2 w lp t 'Timing 3 - Old'
+
+set title 'Theta e1024 Timings - 7th order'
+set logscale x
+set logscale y
+set terminal png enhanced
+set xlabel "Number of MPI Ranks"
+set ylabel "Time (s)"
+set output 'theta_e1024_7.png'
+plot 'timing1_7_new_loops_e1024_theta' u 1:2 w lp t 'Timing 1 - New', 'timing2_7_new_loops_e1024_theta' u 1:2 w lp t 'Timing 2 - New', 'timing3_7_new_loops_e1024_theta' u 1:2 w lp t 'Timing 3 - New', 'timing1_7_old_loops_e1024_theta' u 1:2 w lp t 'Timing 1 - Old', 'timing2_7_old_loops_e1024_theta' u 1:2 w lp t 'Timing 2 - Old', 'timing3_7_old_loops_e1024_theta' u 1:2 w lp t 'Timing 3 - Old'
+
+set title 'Cetus e128 Timings - 7th order'
+set logscale x
+set logscale y
+set terminal png enhanced
+set xlabel "Number of MPI Ranks"
+set ylabel "Time (s)"
+set output 'cetus_e128_7.png'
+plot 'timing1_7_new_loops_e128_cetus' u 1:2 w lp t 'Timing 1 - New', 'timing2_7_new_loops_e128_cetus' u 1:2 w lp t 'Timing 2 - New', 'timing3_7_new_loops_e128_cetus' u 1:2 w lp t 'Timing 3 - New', 'timing1_7_old_loops_e128_cetus' u 1:2 w lp t 'Timing 1 - Old', 'timing2_7_old_loops_e128_cetus' u 1:2 w lp t 'Timing 2 - Old', 'timing3_7_old_loops_e128_cetus' u 1:2 w lp t 'Timing 3 - Old'
+
+set title 'Cetus e1024 Timings - 7th order'
+set logscale x
+set logscale y
+set terminal png enhanced
+set xlabel "Number of MPI Ranks"
+set ylabel "Time (s)"
+set output 'cetus_e1024_7.png'
+plot 'timing1_7_old_loops_e1024_cetus' u 1:2 w lp t 'Timing 1 - Old', 'timing2_7_old_loops_e1024_cetus' u 1:2 w lp t 'Timing 2 - Old', 'timing3_7_old_loops_e1024_cetus' u 1:2 w lp t 'Timing 3 - Old'
+

@@ -1,0 +1,8 @@
+dir=e1024_cetus
+ grep 'total  time' ${dir}/*timing1*7*old* | awk '{print $1 $5}' > timing1_7_old_loops_${dir}
+ grep 'total  time' ${dir}/*timing2*7*old* | awk '{print $1 $5}' > timing2_7_old_loops_${dir}
+ grep 'total  time' ${dir}/*timing3*7*old* | awk '{print $1 $5}' > timing3_7_old_loops_${dir}
+ grep 'total  time' ${dir}/*timing1*7*new* | awk '{print $1 $5}' > timing1_7_new_loops_${dir}
+ grep 'total  time' ${dir}/*timing2*7*new* | awk '{print $1 $5}' > timing2_7_new_loops_${dir}
+ grep 'total  time' ${dir}/*timing3*7*new* | awk '{print $1 $5}' > timing3_7_new_loops_${dir}
+ for file in timing*$dir; do sed -e "s/$dir\/np_//g" -e 's/:/ /g' -e 's/_logfile_timing[1-3]_7_..._loops//g' $file | sort -n -k 1 > tmp && mv tmp $file; done
