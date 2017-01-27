@@ -1,0 +1,1515 @@
+/----------------------------------------------------------\
+|      _   __ ______ __ __  ______  ______   __  _____     |
+|     / | / // ____// //_/ / ____/ / __ _ / / _|/ __  /    |
+|    /  |/ // __/  / ,<   / /     / /__/   / / / / / /     |
+|   / /|  // /___ / /| | / /_ _  / /___   /_/ / / / /      |
+|  /_/ |_//_____//_/ |_|/_____/ /______/ /_/ /_/ /_/       |
+|                                                          |
+|----------------------------------------------------------|
+|                                                          |
+| NekCEM :  Nek5000 for Computational ElectroMagnetics     |
+|           Open Source Spectal Element DG Maxwell Solver  |
+| Source :  https://svn.mcs.anl.gov/repos/NEKCEM           |
+|                                                          |
+\----------------------------------------------------------/
+                                                              
+
+ Number of processors:           64
+ REAL    wdsize      :            8
+ INTEGER wdsize      :            4
+ MPI walltime:    1485479033.153287     
+ MPI walltime:    1485479033.153316     
+ call data_init2
+ IFCEM=   T
+ 
+ Preprocessor options::  
+   MOAB off at compile time
+   MPI on: -DNO_MPI not defined
+   GPU off at compile time
+   OpenMP off: -DOMP not defined
+ 
+ PDE/ODE Options:: 
+   IFPDE=   T
+   IFODE=   F  (quantum solver)
+ 
+ Mesh options:: 
+   IFHEX=   T  (hexahedral )
+   IFTET=   F  (tetrahedral)
+ 
+ Available basis:: 
+   IFDG     =   T  (SEDG   )
+   IFNEDELEC=   F  (Nedelec)
+
+
+  Beginning session:
+  /lustre/atlas/scratch/motten/csc235/NEKCEM/trunk/examples/openacc_gpu=8/np_64/
+
+ 
+ done: data_init2::   1.1685848236083984E-002  sec
+ call read_init2
+ timer accuracy:   0.0000000E+00 sec
+
+ read .rea file
+ NPSCAL/nfield/ldimt            0            1            1
+ read .re2 file
+ byte swap:  F    6.543210      -2.9312772E+35
+ nelgt/nelgv/lelt:     1024     1024      128
+ lx1  /lx2  /lx3 :        8        8        8
+ call   mapelpr, mapping elements to processors         1024
+ call   set_proc_map()
+ ifgtp/gfdm/zper  F  F  F
+ get_vert, ncrnr=            8
+ ifgfdm  F
+          32          16          16        1024        1024 NELV
+          33          16          16        1024        1024 NELV
+          36          16          16        1024        1024 NELV
+          37          16          16        1024        1024 NELV
+          40          16          16        1024        1024 NELV
+          41          16          16        1024        1024 NELV
+          35          16          16        1024        1024 NELV
+          34          16          16        1024        1024 NELV
+          44          16          16        1024        1024 NELV
+          47          16          16        1024        1024 NELV
+          42          16          16        1024        1024 NELV
+          38          16          16        1024        1024 NELV
+          39          16          16        1024        1024 NELV
+           0          16          16        1024        1024 NELV
+           1          16          16        1024        1024 NELV
+           4          16          16        1024        1024 NELV
+           5          16          16        1024        1024 NELV
+           8          16          16        1024        1024 NELV
+           3          16          16        1024        1024 NELV
+           2          16          16        1024        1024 NELV
+           9          16          16        1024        1024 NELV
+          10          16          16        1024        1024 NELV
+          13          16          16        1024        1024 NELV
+          12          16          16        1024        1024 NELV
+           6          16          16        1024        1024 NELV
+           7          16          16        1024        1024 NELV
+          11          16          16        1024        1024 NELV
+          21          16          16        1024        1024 NELV
+          17          16          16        1024        1024 NELV
+          18          16          16        1024        1024 NELV
+          20          16          16        1024        1024 NELV
+          28          16          16        1024        1024 NELV
+          25          16          16        1024        1024 NELV
+          27          16          16        1024        1024 NELV
+          49          16          16        1024        1024 NELV
+          48          16          16        1024        1024 NELV
+          52          16          16        1024        1024 NELV
+          54          16          16        1024        1024 NELV
+          55          16          16        1024        1024 NELV
+          53          16          16        1024        1024 NELV
+          59          16          16        1024        1024 NELV
+          56          16          16        1024        1024 NELV
+          61          16          16        1024        1024 NELV
+          60          16          16        1024        1024 NELV
+          58          16          16        1024        1024 NELV
+          51          16          16        1024        1024 NELV
+          50          16          16        1024        1024 NELV
+          57          16          16        1024        1024 NELV
+          62          16          16        1024        1024 NELV
+          63          16          16        1024        1024 NELV
+          15          16          16        1024        1024 NELV
+          14          16          16        1024        1024 NELV
+ done:: set_proc_map()
+ RANK     0 IEG     901     902     903     904     909     910     911     912
+                    965     966     967     968     973     974     975     976
+ element load imbalance:             0           16           16
+ done :: mapelpr, mapping elements to processors
+
+ gfdm/ifgtp/ifre2  F  F  T
+   reading mesh 
+   reading curved sides 
+   reading bc for ifld            1
+ done :: read .re2 file
+  
+ done :: close .rea file   0.41082E-01 sec
+
+ done: readat2 ::   4.1137933731079102E-002  sec
+ call para_init2
+ done: para_init2
+ setup mesh topology
+   Right-handed check complete for1024 elements. OK.
+            0           16         3840           96  Fgbtuple            8
+   setvert3d:   8      130192      351376      130192      130192
+   call usrsetvert
+   done :: usrsetvert
+
+gs_setup: 59200 unique labels shared
+          29          16          16        1024        1024 NELV
+          22          16          16        1024        1024 NELV
+          24          16          16        1024        1024 NELV
+          23          16          16        1024        1024 NELV
+          19          16          16        1024        1024 NELV
+          26          16          16        1024        1024 NELV
+          16          16          16        1024        1024 NELV
+          30          16          16        1024        1024 NELV
+          43          16          16        1024        1024 NELV
+          45          16          16        1024        1024 NELV
+          46          16          16        1024        1024 NELV
+          31          16          16        1024        1024 NELV
+   pairwise times (avg, min, max): 0.000231426 0.000205398 0.000339699
+   crystal router                : 0.000188175 0.000186086 0.000190592
+   all reduce                    : 0.00202434 0.0020185 0.002033
+   used all_to_all method: crystal router
+   handle bytes (avg, min, max): 486784 481588 491980
+   buffer bytes (avg, min, max): 66064 66064 66064
+   setup_ds time 8.9982E-02 seconds   0  8      130192        1024
+ setup_dgds2:: init
+            0           16         3840           96  Fgbtuple           10
+   setvert3d:  10      222464      746752      222464      222464
+   call usrsetvert
+   done :: usrsetvert
+
+ set_vert time:: 3.6950E-03 seconds 
+gs_setup: 81920 unique labels shared
+   pairwise times (avg, min, max): 0.000168902 0.000129795 0.000190592
+   crystal router                : 0.000310692 0.000304103 0.000324917
+   used all_to_all method: pairwise
+   all reduce                    : 0.00345012 0.00343781 0.00346689
+   handle bytes (avg, min, max): 104876 104876 104876
+   buffer bytes (avg, min, max): 40960 40960 40960
+   gs_setup time:: 1.1110E-01 seconds 
+ setup_dsdg2 time:: 1.1489E-01 seconds   1  8      222464        1024
+ done :: setup mesh topology
+ .
+            8  max multiplicity
+npts/nelt/nxyz/nxzfl/nfield     8192       16      512     6144    1
+ call usrdat
+ done :: usrdat
+
+ call set_options
+ IFMAXWELL     T
+ IFSCHROD      F
+ IFDRIFT       F
+ IFDRUDE       F
+ IFLOREN       F
+ IFBEAM        F
+ IFWAKE        F
+ IFMOVW        F
+ IFFILTER      F
+ IFNAPY        F
+ IFWAKET       F
+ IFVARDT       F
+ IFPBG         F
+ IFDIELEC      F
+ IFPOISSON     F
+ IFGMRES       F
+ IFCG          F
+ IFSEMG        F
+ IFFDM         F
+ IFIC          F
+ IFSOL         T
+ IFSRC         F
+ IFSCAT        F
+ IFSFTF        F
+ IFCENTRAL     F
+ IFUPWIND      T
+ IFDEALIAS     F
+ IFTM          F
+ IFTE          T
+ IFEIG         F
+ IFEXP         F
+ IFRK45        T
+ IFRK44        F
+ IFRK33        F
+ IFRK22        F
+ IFSIM5        F
+ IFSIM4        F
+ IFSIM3        F
+ IFSIM2        F
+ IFSIM1        F
+ IFDTCTL       F
+ IFPEC         F
+ IFROB         F
+ IFNEU         F
+ IFINHOM       F
+ IFPML         F
+ IFCUR         F
+ IFDTN         F
+ IFNM          F
+ IFRESTART     F
+ 
+ cspeed   =    1.000000000000000     
+ permit_0 =    1.000000000000000     
+ permea_0 =    1.000000000000000     
+ nmscale  =    1.000000000000000     
+ 
+ done :: set_options
+
+ call setlog
+ ifflow/ifheat/nfield  T  F            1
+ ifield0/nfld            1            1
+ IFSTRS =  F
+ IFCHAR =  F
+ IFAXIS =  F
+ IFMVBD =  F
+ IFMELT =  F
+ IFMODEL=  F
+ IFKEPS =  F
+   
+ IFVCOR =  T
+ IFINTQ =  F
+ IFCWUZ =  F
+ IFSWALL=  F
+ IFGEOM =  F
+ IFSURT =  F
+ IFWCNO =  F
+ IFCEM  =  T
+   
+ IFADVC for field            1    =   F
+ IFNONL for field            1    =   F
+ done :: setlog
+
+ call gengeom
+ genwz
+ gencoor
+ geom1
+ Vol:    8.000000000000014         8.000000000000014     
+ volumn
+ setdef
+ done :: generate geomerty data
+  
+ done :: gengeom
+
+ call usrdat2
+ done :: usrdat2
+
+ call geom_reset
+ this is bm2:   4.8010709843108212E-005
+ Vol:    248.0502134423987         248.0502134423987     
+ done :: geom_reset
+
+ call set_unr   
+ done :: set_unr
+
+  Mesh consistency check, OK.
+ call load_semhat_weighted
+ done :: load_semhat_weighted
+
+ dofs:                        0       524288        19456
+ MPI walltime:    1485479033.444359     
+ 
+ Preprocessor options::  
+   hpm off: -DHPM not defined
+ 
+
+ MPI walltime:    1485479033.444395     
+ IFMAXWELL     T
+ IFSCHROD      F
+ IFDRIFT       F
+ IFDRUDE       F
+ IFLOREN       F
+ IFBEAM        F
+ IFWAKE        F
+ IFMOVW        F
+ IFFILTER      F
+ IFNAPY        F
+ IFWAKET       F
+ IFVARDT       F
+ IFPBG         F
+ IFDIELEC      F
+ IFPOISSON     F
+ IFGMRES       F
+ IFCG          F
+ IFSEMG        F
+ IFFDM         F
+ IFIC          F
+ IFSOL         T
+ IFSRC         F
+ IFSCAT        F
+ IFSFTF        F
+ IFCENTRAL     F
+ IFUPWIND      T
+ IFDEALIAS     F
+ IFTM          F
+ IFTE          T
+ IFEIG         F
+ IFEXP         F
+ IFRK45        T
+ IFRK44        F
+ IFRK33        F
+ IFRK22        F
+ IFSIM5        F
+ IFSIM4        F
+ IFSIM3        F
+ IFSIM2        F
+ IFSIM1        F
+ IFDTCTL       F
+ IFPEC         F
+ IFROB         F
+ IFNEU         F
+ IFINHOM       F
+ IFPML         F
+ IFCUR         F
+ IFDTN         F
+ IFNM          F
+ IFRESTART     F
+ 
+ cspeed   =    1.000000000000000     
+ permit_0 =    1.000000000000000     
+ permea_0 =    1.000000000000000     
+ nmscale  =    1.000000000000000     
+ 
+ start: initialize geom and fields
+ done: initialization geom/fields
+ start: cem_set_fc_ptr, volume index j=cemface(i)
+ done: cem_set_fc_ptr, ncemface=          6144
+ npts         8192            8            8            8           16
+ permit_max=    1.000000000000000     
+ permit_min=    1.000000000000000     
+ permea_max=    1.000000000000000     
+ permea_min=    1.000000000000000     
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            5            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            5            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            5            0
+ RRR            6            0
+ RRR            5            0
+ RRR            7            0
+ RRR            6            0
+ RRR            4            0
+ RRR            6            0
+ RRR            7            0
+ RRR            5            0
+ RRR            7            0
+ RRR            2            0
+ RRR            6            0
+ RRR            3            0
+ RRR            3            0
+ RRR            7            0
+ RRR            8            0
+ RRR            8            0
+ RRR            8            0
+ RRR            3            0
+ RRR            1            0
+ RRR            9            0
+ RRR            8            0
+ RRR           10            0
+ RRR            9            0
+ RRR            9            0
+ RRR            6            0
+ RRR            9            0
+ RRR            7            0
+ RRR           10            0
+ RRR           10            0
+ RRR           11            0
+ RRR           11            0
+ RRR            4            0
+ RRR            4            0
+ RRR           12            0
+ RRR            5            0
+ RRR           13            0
+ RRR           10            0
+ RRR            8            0
+ RRR           12            0
+ RRR           14            0
+ RRR           11            0
+ RRR           13            0
+ RRR           15            0
+ RRR           14            0
+ RRR           12            0
+ RRR           16            0
+ RRR           15            0
+ RRR           13            0
+ RRR           16            0
+ RRR            9            0
+ RRR           11            0
+ RRR           14            0
+ start: cem_maxwell_materials
+ RRR           15            0
+ RRR            4            0
+ RRR            1            0
+ RRR           16            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR           12            0
+ RRR            6            0
+ RRR            5            0
+ RRR            3            0
+ RRR            7            0
+ RRR           13            0
+ RRR            4            0
+ RRR            8            0
+ RRR            5            0
+ RRR            3            0
+ RRR            2            0
+ RRR           14            0
+ RRR           10            0
+ RRR           15            0
+ RRR            9            0
+ RRR            6            0
+ RRR           16            0
+ RRR            3            0
+ RRR            4            0
+ RRR            6            0
+ RRR            5            0
+ RRR           10            0
+ RRR            7            0
+ RRR            6            0
+ RRR           11            0
+ RRR            4            0
+ RRR            8            0
+ RRR            7            0
+ RRR            5            0
+ RRR           11            0
+ RRR            5            0
+ RRR            8            0
+ RRR            6            0
+ RRR            6            0
+ RRR            9            0
+ RRR           12            0
+ RRR            7            0
+ RRR            7            0
+ RRR           13            0
+ RRR            7            0
+ RRR           14            0
+ RRR           10            0
+ RRR           15            0
+ RRR            9            0
+ RRR           11            0
+ RRR            8            0
+ RRR            8            0
+ RRR           10            0
+ RRR            8            0
+ RRR            9            0
+ RRR            9            0
+ RRR           12            0
+ RRR           16            0
+ RRR           11            0
+ RRR            9            0
+ RRR           13            0
+ RRR           10            0
+ RRR           10            0
+ RRR           12            0
+ RRR           10            0
+ RRR           11            0
+ RRR           13            0
+ RRR           14            0
+ RRR           11            0
+ RRR           14            0
+ RRR           12            0
+ RRR           11            0
+ RRR           15            0
+ RRR           13            0
+ RRR           12            0
+ RRR           12            0
+ RRR           14            0
+ RRR           13            0
+ RRR           15            0
+ RRR           16            0
+ RRR           13            0
+ RRR           16            0
+ RRR           14            0
+ RRR           14            0
+ RRR           15            0
+ RRR           15            0
+ RRR            2            0
+ RRR           16            0
+ RRR           16            0
+ RRR            1            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            5            0
+ RRR            3            0
+ RRR            6            0
+ RRR            2            0
+ RRR            7            0
+ RRR            4            0
+ RRR            3            0
+ RRR            8            0
+ RRR            5            0
+ RRR            4            0
+ RRR            9            0
+ RRR            6            0
+ RRR            5            0
+ RRR           10            0
+ RRR            7            0
+ RRR           12            0
+ RRR           11            0
+ RRR            6            0
+ RRR            8            0
+ RRR            7            0
+ RRR           12            0
+ RRR           13            0
+ RRR            9            0
+ RRR            8            0
+ RRR           13            0
+ RRR           10            0
+ RRR            9            0
+ RRR           11            0
+ RRR           14            0
+ RRR           14            0
+ RRR           10            0
+ RRR           12            0
+ RRR           15            0
+ RRR           15            0
+ RRR           13            0
+ RRR           16            0
+ RRR           16            0
+ RRR           11            0
+ RRR           14            0
+ RRR           12            0
+ RRR           15            0
+ RRR           15            0
+ RRR           16            0
+ RRR           13            0
+ RRR           16            0
+ RRR           14            0
+ RRR            1            0
+ RRR           15            0
+ RRR           16            0
+ RRR            3            0
+ RRR            4            0
+ RRR            5            0
+ RRR            6            0
+ RRR            7            0
+ RRR            8            0
+ RRR            9            0
+ RRR           10            0
+ RRR           11            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            4            0
+ RRR            5            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            5            0
+ RRR            6            0
+ RRR            2            0
+ RRR            6            0
+ RRR            3            0
+ RRR            3            0
+ RRR            7            0
+ RRR            3            0
+ RRR            3            0
+ RRR            8            0
+ RRR            4            0
+ RRR            4            0
+ RRR            9            0
+ RRR            4            0
+ RRR            5            0
+ RRR            5            0
+ RRR            4            0
+ RRR           10            0
+ RRR            4            0
+ RRR            5            0
+ RRR            5            0
+ RRR            2            0
+ RRR            6            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            7            0
+ RRR            5            0
+ RRR            6            0
+ RRR           11            0
+ RRR            7            0
+ RRR            3            0
+ RRR            5            0
+ RRR            4            0
+ RRR            6            0
+ RRR            6            0
+ RRR            2            0
+ RRR            5            0
+ RRR           12            0
+ RRR            8            0
+ RRR            7            0
+ RRR            3            0
+ RRR            9            0
+ RRR            7            0
+ RRR           13            0
+ RRR           10            0
+ RRR            8            0
+ RRR            4            0
+ RRR           11            0
+ RRR            9            0
+ RRR           12            0
+ RRR            6            0
+ RRR            6            0
+ RRR            8            0
+ RRR            8            0
+ RRR            5            0
+ RRR           14            0
+ RRR           10            0
+ RRR           15            0
+ RRR            7            0
+ RRR            7            0
+ RRR           16            0
+ RRR            6            0
+ RRR            8            0
+ RRR           11            0
+ RRR            9            0
+ RRR            8            0
+ RRR           10            0
+ RRR            9            0
+ RRR            7            0
+ RRR           11            0
+ RRR            9            0
+ RRR           12            0
+ RRR           10            0
+ RRR            9            0
+ RRR           11            0
+ RRR            8            0
+ RRR           10            0
+ RRR            9            0
+ RRR           12            0
+ RRR           10            0
+ RRR           10            0
+ RRR           11            0
+ RRR           11            0
+ RRR           11            0
+ RRR           12            0
+ RRR           12            0
+ RRR           12            0
+ RRR           13            0
+ RRR            1            0
+ RRR           13            0
+ RRR           14            0
+ RRR           13            0
+ RRR            2            0
+ RRR           15            0
+ RRR           14            0
+ RRR            3            0
+ RRR           14            0
+ RRR           16            0
+ RRR           15            0
+ RRR           15            0
+ RRR            4            0
+ RRR           16            0
+ RRR           16            0
+ RRR            5            0
+ RRR            1            0
+ RRR            6            0
+ RRR            3            0
+ RRR            7            0
+ RRR            2            0
+ RRR            8            0
+ RRR            4            0
+ RRR            3            0
+ RRR            5            0
+ RRR            9            0
+ RRR            6            0
+ RRR            4            0
+ RRR RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            3            0
+ RRR            3            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            5            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            5            0
+ RRR            4            0
+ RRR            5            0
+ RRR            5            0
+ RRR            3            0
+ RRR            6            0
+ RRR            6            0
+ RRR            5            0
+ RRR            7            0
+ RRR            7            0
+ RRR            1            0
+ RRR            8            0
+ RRR            8            0
+ RRR            9            0
+ RRR            6            0
+ RRR           10            0
+ RRR            2            0
+ RRR            9            0
+ RRR            6            0
+ RRR           11            0
+ RRR            7            0
+ RRR           10            0
+ RRR            7            0
+ RRR           11            0
+ RRR           12            0
+ RRR            3            0
+ RRR            8            0
+ RRR            4            0
+ RRR            8            0
+ RRR            5            0
+ RRR           12            0
+ RRR           13            0
+ RRR            6            0
+ RRR            9            0
+ RRR           14            0
+ R RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            5            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            5            0
+ RRR            1            0
+ RRR            3            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            6            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            7            0
+ RRR            3            0
+ RRR            8            0
+ RRR            5            0
+ RRR            2            0
+ RRR            4            0
+ RRR            5            0
+ RRR            5            0
+ RRR            4            0
+ RRR            6            0
+ RRR            6            0
+ RRR            7            0
+ RRR            6            0
+ RRR            5            0
+ RRR            4            0
+ RRR            5            0
+ RRR            6            0
+ RRR            8            0
+ RRR            6            0
+ RRR            7            0
+ RRR            5            0
+ RRR            6            0
+ RRR            7            0
+ RRR            9            0
+ RRR            4            0
+ RRR           10            0
+ RRR            8            0
+ RRR            9            0
+ RRR           11            0
+ RRR            9            0
+ RRR            6            0
+ RRR            7            0
+ RRR           10            0
+ RRR            5            0
+ R RRR            2            0
+ RRR            3            0
+ RRR           12            0
+ RRR           13            0
+ RRR           14            0
+ RRR           15            0
+ RRR           16            0
+ done: cem_maxwell_materials
+RR            7            0
+ RRR            8            0
+ RRR            8            0
+ RRR            8            0
+ RRR            7            0
+ RRR           10            0
+ RRR            9            0
+ RRR            8            0
+ RRR            9            0
+ RRR            9            0
+ RRR           10            0
+ RRR           11            0
+ RRR            7            0
+ RRR           11            0
+ RRR           12            0
+ RRR           12            0
+ RRR            8            0
+ RRR           11            0
+ RRR           10            0
+ RRR           10            0
+ RRR            9            0
+ RRR           12            0
+ RRR           13            0
+ RRR           13            0
+ RRR           11            0
+ RRR           13            0
+ RRR           12            0
+ RRR           12            0
+ RRR           11            0
+ RRR           13            0
+ RRR           14            0
+ RRR            3            0
+ RRR           14            0
+ RRR           14            0
+ RRR           12            0
+ RRR            4            0
+ RRR           10            0
+ RRR           15            0
+ RRR           15            0
+ RRR           13            0
+ RRR           13            0
+ RRR           16            0
+ RRR           14            0
+ RRR           14            0
+ RRR           14            0
+ RRR           11            0
+ RRR            5            0
+ RRR           15            0
+ RRR           16            0
+ RRR           16            0
+ RRR           15            0
+ RRR           15            0
+ RRR           15            0
+ RRR           12            0
+ RRR           16            0
+ RRR           13            0
+ RRR            6            0
+ RRR           16            0
+ RRR           14            0
+ RRR           16            0
+ RRR            7            0
+ RRR           15            0
+ RRR            2            0
+ RRR            8            0
+ RRR           16            0
+ RRR            9            0
+ RRRRR           13            0
+ RRR           10            0
+ RRR            7            0
+ RRR           15            0
+ RRR           14            0
+ RRR           11            0
+ RRR           16            0
+ RRR           12            0
+ RRR           15            0
+ RRR            8            0
+ RRR           13            0
+ RRR           16            0
+ RRR           14            0
+ RRR            9            0
+ RRR           15            0
+ RRR           10            0
+ RRR           16            0
+ RRR           11            0
+ RRR            1            0
+ RRR           12            0
+ RRR           13            0
+ RRR            2            0
+ RRR            6            0
+ RRR           14            0
+ RRR            4            0
+ RRR            7            0
+ RRR           15            0
+ RRR            5            0
+ RRR            8            0
+ RRR            6            0
+ RRR           16            0
+ RRR            7            0
+ RRR            9            0
+ RRR            8            0
+ RRR            2            0
+ RRR            9            0
+ RRR           10            0
+ RRR            5            0
+ RRR           11            0
+ RRR           10            0
+ RRR            3            0
+ RRR           12            0
+ RRR           11            0
+ RRR            4            0
+ RRR           13            0
+ RRR           12            0
+ RRR            6            0
+ RRR           14            0
+ RRR           13            0
+ RRR            7            0
+ RRR           15            0
+ RRR            5            0
+ RRR           16            0
+ RRR            8            0
+ RRR            6            0
+ RRR           14            0
+ RRR            9            0
+ RRR            7            0
+ RRR           10            0
+ RRR           15            0
+ RRR            5            0
+ RRR           11            0
+ RRR           16            0
+ RRR           12            0
+ RRR            1            0
+ RRR            6            0
+ RRR            7            0
+ RRR           10            0
+ RRR            8            0
+ RRR            5            0
+ RRR           11            0
+ RRR            9            0
+ RRR            6            0
+ RRR           12            0
+ RRR           10            0
+ RRR            7            0
+ RRR           13            0
+ RRR            8            0
+ RRR           11            0
+ RRR           14            0
+ RRR            9            0
+ RRR           15            0
+ RRR           12            0
+ RRR           10            0
+ RRR           16            0
+ RRR           13            0
+ RRR           11            0
+ RRR           14            0
+ RRR            1            0
+ RRR           15            0
+ RRR           12            0
+ RRR            2            0
+ RRR            2            0
+ RRR           16            0
+ RRR            3            0
+ RRR           13            0
+ RRR            3            0
+ RRR            4            0
+ RRR           14            0
+ RRR            5            0
+ RRR           15            0
+ RRR            4            0
+ RRR           16            0
+ RRR            5            0
+ RRR            6            0
+ RRR            6            0
+ RRR            7            0
+ RRR            7            0
+ RRR            8            0
+ RRR            8            0
+ RRR            9            0
+ RRR            9            0
+ RRR           10            0
+ RRR           10            0
+ RRR           11            0
+ RRR           11            0
+ RRR           12            0
+ RRR           12            0
+ RRR           13            0
+ RRR           13            0
+ RRR           14            0
+ RRR           14            0
+ RRR           15            0
+ RRR           15            0
+ RRR           16            0
+ RRR           16            0
+ RRR            6            0
+ RRR            7            0
+ RRR            8            0
+ RRR            7            0
+ RRR            9            0
+           13            0
+ RRR            2            0
+ RRR           14            0
+ RRR            7            0
+ RRR            3            0
+ RRR           15            0
+ RRR            8            0
+ RRR            4            0
+ RRR           16            0
+ RRR            9            0
+ RRR            5            0
+ RRR           10            0
+ RRR            2            0
+ RRR            6            0
+ RRR           11            0
+ RRR            3            0
+ RRR            7            0
+ RRR           12            0
+ RRR            4            0
+ RRR            8            0
+ RRR            5            0
+ RRR           13            0
+ RRR            9            0
+ RRR            6            0
+ RRR           14            0
+ RRR           10            0
+ RRR           15            0
+ RRR            7            0
+ RRR           11            0
+ RRR           16            0
+ RRR            8            0
+ RRR            3            0
+ RRR           12            0
+ RRR            9            0
+ RRR           13            0
+ RRR            4            0
+ RRR           10            0
+ RRR           14            0
+ RRR            5            0
+ RRR           11            0
+ RRR           15            0
+ RRR            6            0
+ RRR           12            0
+ RRR           16            0
+ RRR            7            0
+ RRR           13            0
+ RRR            8            0
+ RRR            5            0
+ RRR            9            0
+ RRR           14            0
+ RRR           10            0
+ RRR            6            0
+ RRR           11            0
+ RRR           15            0
+ RRR            7            0
+ RRR           12            0
+ RRR           16            0
+ RRR           13            0
+ RRR            8            0
+ RRR           14            0
+ RRR            9            0
+ RRR           15            0
+ RRR           10            0
+ RRR           16            0
+ RRR           11            0
+ RRR           12            0
+ RRR              3            0
+ RRR            1            0
+ RRR            4            0
+ RRR           10            0
+ RRR            2            0
+ RRR            5            0
+ RRR           11            0
+ RRR            3            0
+ RRR           12            0
+ RRR            6            0
+ RRR            4            0
+ RRR            7            0
+ RRR           13            0
+ RRR            5            0
+ RRR            8            0
+ RRR           14            0
+ RRR            9            0
+ RRR            6            0
+ RRR           10            0
+ RRR            7            0
+ RRR           15            0
+ RRR           11            0
+ RRR            8            0
+ RRR           12            0
+ RRR           16            0
+ RRR           13            0
+ RRR            9            0
+ RRR           14            0
+ RRR           10            0
+ RRR           15            0
+ RRR           11            0
+ RRR           16            0
+ RRR           12            0
+ RRR            1            0
+ RRR           13            0
+ RRR           14            0
+ RRR           15            0
+ RRR            1            0
+ RRR           16            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            5            0
+ RRR            4            0
+ RRR            6            0
+ RRR            5            0
+ RRR            7            0
+ RRR            6            0
+ RRR            7            0
+ RRR            8            0
+ RRR            8            0
+ RRR            9            0
+ RRR            9            0
+ RRR           10            0
+ RRR           10            0
+ RRR           11            0
+ RRR           11            0
+ RRR           12            0
+ RRR           12            0
+ RRR           13            0
+ RRR           13            0
+ RRR           14            0
+ RRR           14            0
+ RRR           15            0
+ RRR           15            0
+ RRR           16            0
+ RRR           16            0
+         13            0
+ RRR           14            0
+ RRR           15            0
+ RRR           16            0
+ RRR           13            0
+ RRR           10            0
+ RRR           13            0
+ RRR           11            0
+ RRR           14            0
+ RRR           14            0
+ RRR           12            0
+ RRR           15            0
+ RRR           15            0
+ RRR           13            0
+ RRR           16            0
+ RRR           16            0
+ RRR           14            0
+ RRR           15            0
+ RRR           16            0
+ RRR           12            0
+ RRR           13            0
+ RRR           13            0
+ RRR           14            0
+ RRR           14            0
+ RRR           15            0
+ RRR           15            0
+ RRR           16            0
+ RRR           16            0
+ RRR            3            0
+ RRR            4            0
+ RRR            5            0
+ RRR            6            0
+ RRR            7            0
+ RRR            8            0
+ RRR            9            0
+ RRR           10            0
+ RRR           11            0
+ RRR           12            0
+ RRR           13            0
+ RRR           14            0
+ RRR           15            0
+ RRR           16            0
+ RRR            8            0
+ RRR            9            0
+ RRR           10            0
+ RRR           11            0
+ RRR           12            0
+ RRR           13            0
+ RRR           14            0
+ RRR           15            0
+ RRR           16            0
+ RRR            4            0
+ RRR            9            0
+ RRR           10            0
+ RRR            2            0
+ RRR            6            0
+ RRR            3            0
+ RRR            9            0
+ RRR            4            0
+ RRR            7            0
+ RRR           10            0
+ RRR            5            0
+ RRR            8            0
+ RRR            6            0
+ RRR            9            0
+ RRR           11            0
+ RRR           10            0
+ RRR            7            0
+ RRR           11            0
+ RRR            8            0
+ RRR           12            0
+ RRR            9            0
+ RRR           12            0
+ RRR           13            0
+ RRR           10            0
+ RRR           13            0
+ RRR           14            0
+ RRR           11            0
+ RRR           14            0
+ RRR           15            0
+ RRR           12            0
+ RRR           15            0
+ RRR           16            0
+ RRR           13            0
+ RRR           16            0
+ RRR           14            0
+ RRR           15            0
+ RRR            2            0
+ RRR           16            0
+ RRR            3            0
+ RRR            4            0
+ RRR            5            0
+ RRR            6            0
+ RRR            7            0
+ RRR            8            0
+ RRR            9            0
+ RRR           10            0
+ RRR           11            0
+ RRR           12            0
+ RRR           13            0
+ RRR           14            0
+ RRR           15            0
+ RRR           16            0
+ RRR            3            0
+ RRR           11            0
+ RRR            8            0
+ RRR           12            0
+ RRR            9            0
+ RRR           13            0
+ RRR           10            0
+ RRR           14            0
+ RRR           11            0
+ RRR           15            0
+ RRR           12            0
+ RRR           16            0
+ RRR           13            0
+ RRR           14            0
+ RRR            4            0
+ RRR           15            0
+ RRR           16            0
+ RRR            5            0
+ RRR            6            0
+ RRR            7            0
+ RRR            8            0
+ RRR            9            0
+ RRR           10            0
+ RRR           11            0
+ RRR           12            0
+ RRR           13            0
+ RRR           14            0
+ RRR           15            0
+ RRR           16            0
+ RRR            5            0
+ RRR            6            0
+ RRR            7            0
+ RRR            8            0
+ RRR            9            0
+ RRR           10            0
+ RRR           11            0
+ RRR           12            0
+ RRR           13            0
+ RRR           14            0
+ RRR           15            0
+ RRR           16            0
+ RRR            4            0
+ RRR            5            0
+ RRR            6            0
+ RRR            7            0
+ RRR            8            0
+ RRR            9            0
+ RRR           10            0
+ RRR           11            0
+ RRR           12            0
+ RRR           13            0
+ RRR           14            0
+ RRR           15            0
+ RRR           16            0
+ done: cem_maxwell_materials
+ start: cem_alternatve_flux_ptr-> index setting
+ done: cem_alternate_flux_ptr
+ nid=0: gs_op_fields: single vector   1.4450550079345703E-003 sec
+ nid=0: gs_op_fields: multi  vector   1.5509128570556641E-003 sec
+ gs_op_fields: chose multi vector 
+ done: inverse mass matrix
+  dxmin=   4.0084740952239351E-002
+ dt=   2.0000000000000001E-004 , CFL=   4.9894297742449781E-003
+ IFDRIFT=  F
+ usersol: done, IFSOL=  T
+ userini: done, IFSOL=  T
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         0   16    4    7   28     8192       0.00000E+00       2.00000E-04       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00 CPU: L2  
+         0   16    4    7   28     8192       0.00000E+00       2.00000E-04       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00 CPU: Linf
+ userchk: done, ifrestart=  F
+ IFDOUBLE=  T
+ param(81)=            0
+ param(82)=            1
+ param(83)=            0
+ dumpno   =            0
+ IFRK,IFSIM,IFBDF  T  F  F
+ param(17): defined as     0.000000000000000     
+ initial time=    0.000000000000000      , final time= 
+   1.0000000000000000E+020
+ total nsteps=         1000
+ iocomm=         1000 , iostep=         1000
+ . 
+ ============================
+ ========  BEGIN RUN ========
+ ============================
+ istep=     1    to      1000
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         1   16    4    7   28     8192       2.00000E-04       2.00000E-04       2.83230E-13       2.83221E-13       2.83222E-13       3.00931E-17       3.44069E-16       4.75172E-16       3.78990E-02       3.54743-317 CPU: L2  
+         1   16    4    7   28     8192       2.00000E-04       2.00000E-04       1.97989E-12       1.97989E-12       1.97989E-12       2.28223E-15       5.10487E-15       5.10470E-15       3.78990E-02       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         2   16    4    7   28     8192       4.00000E-04       2.00000E-04       5.65586E-13       5.65569E-13       5.65569E-13       1.15006E-16       1.36319E-15       1.88796E-15       7.46970E-02       3.54743-317 CPU: L2  
+         2   16    4    7   28     8192       4.00000E-04       2.00000E-04       3.93176E-12       3.93175E-12       3.93175E-12       4.53160E-15       2.03193E-14       2.03186E-14       7.46970E-02       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         3   16    4    7   28     8192       6.00000E-04       2.00000E-04       8.47086E-13       8.47060E-13       8.47061E-13       2.56270E-16       3.05186E-15       4.22786E-15       1.11391E-01       3.54743-317 CPU: L2  
+         3   16    4    7   28     8192       6.00000E-04       2.00000E-04       5.85599E-12       5.85598E-12       5.85598E-12       6.74802E-15       4.54942E-14       4.59077E-14       1.11391E-01       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         4   16    4    7   28     8192       8.00000E-04       2.00000E-04       1.12775E-12       1.12771E-12       1.12771E-12       4.53745E-16       5.40002E-15       7.48175E-15       1.48119E-01       3.54743-317 CPU: L2  
+         4   16    4    7   28     8192       8.00000E-04       2.00000E-04       7.75298E-12       7.75296E-12       7.75296E-12       8.93141E-15       8.04820E-14       8.18234E-14       1.48119E-01       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         5   16    4    7   28     8192       1.00000E-03       2.00000E-04       1.40759E-12       1.40754E-12       1.40754E-12       7.07267E-16       8.39922E-15       1.16380E-14       1.84973E-01       3.54743-317 CPU: L2  
+         5   16    4    7   28     8192       1.00000E-03       2.00000E-04       9.62313E-12       9.62309E-12       9.62310E-12       1.10818E-14       1.25137E-13       1.28175E-13       1.84973E-01       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         6   16    4    7   28     8192       1.20000E-03       2.00000E-04       1.68662E-12       1.68657E-12       1.68657E-12       1.01667E-15       1.20400E-14       1.66847E-14       2.21695E-01       3.54743-317 CPU: L2  
+         6   16    4    7   28     8192       1.20000E-03       2.00000E-04       1.14668E-11       1.14668E-11       1.14668E-11       1.31991E-14       1.79313E-13       1.84852E-13       2.21695E-01       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         7   16    4    7   28     8192       1.40000E-03       2.00000E-04       1.96486E-12       1.96480E-12       1.96480E-12       1.38180E-15       1.63145E-14       2.26101E-14       2.58755E-01       3.54743-317 CPU: L2  
+         7   16    4    7   28     8192       1.40000E-03       2.00000E-04       1.32845E-11       1.32843E-11       1.32843E-11       1.52833E-14       2.42870E-13       2.51910E-13       2.58755E-01       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         8   16    4    7   28     8192       1.60000E-03       2.00000E-04       2.24234E-12       2.24227E-12       2.24227E-12       1.80250E-15       2.12147E-14       2.94046E-14       2.95402E-01       3.54743-317 CPU: L2  
+         8   16    4    7   28     8192       1.60000E-03       2.00000E-04       1.50764E-11       1.50762E-11       1.50762E-11       1.73345E-14       3.15664E-13       3.29459E-13       2.95402E-01       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         9   16    4    7   28     8192       1.80000E-03       2.00000E-04       2.51905E-12       2.51897E-12       2.51897E-12       2.27861E-15       2.67326E-14       3.70577E-14       3.32016E-01       3.54743-317 CPU: L2  
+         9   16    4    7   28     8192       1.80000E-03       2.00000E-04       1.68430E-11       1.68428E-11       1.68428E-11       1.93526E-14       3.97555E-13       4.17555E-13       3.32016E-01       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+        10   16    4    7   28     8192       2.00000E-03       2.00000E-04       2.79503E-12       2.79493E-12       2.79494E-12       2.80999E-15       3.28616E-14       4.55598E-14       3.68654E-01       3.54743-317 CPU: L2  
+        10   16    4    7   28     8192       2.00000E-03       2.00000E-04       1.85847E-11       1.85844E-11       1.85844E-11       2.13377E-14       4.88405E-13       5.16254E-13       3.68654E-01       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+      1000   16    4    7   28     8192       2.00000E-01       2.00000E-04       8.56892E-11       8.44324E-11       8.44310E-11       1.39800E-11       6.80451E-11       9.65415E-11       3.70654E+01       4.52483E-06 CPU: L2  
+      1000   16    4    7   28     8192       2.00000E-01       2.00000E-04       6.08488E-10       5.80880E-10       5.80880E-10       7.75267E-11       5.23489E-10       1.04592E-09       3.70654E+01       4.52483E-06 CPU: Linf
+
+ max timestep=     1000; estimated remaining time (min)=      0.00
+ MPI walltime:    1485479070.595444     
+ 
+ Preprocessor options::  
+ 
+ IFSE=F, IFDG=T IFNEDELEC=F, IFCG=F, IFGMRES=F, IFDIRECT=F, IFGFDM=F, IFGFDMDD=F, IFFDM=F, IFSEMG=F
+ SRC=F, TM=F, TE=T, CENTRAL=F, UPWIND=T, PML=F, PEC=F EIG=F, EXP=F, RK45=T, RK4=F, RK3=F, RK2=FSIM5=F, SIM4=F, SIM3=F, SIM2=F, SIM1=F, BDF1=F, BDF2=F
+ DEALIAS=F, SCAT=F, SFTF=F, NM=F, DIELEC=F, FILTER=F, SOL=T, POISSON=F, DRUDE=F, LORENTZ=F, HYDRO=F, DRIFT=F, EXCT=F, INHOM=F, Dealias_M=  8, Krylov_Dim=  1
+
+ 
+
+ setup: time2/time1/time2-time1:: 1.4855E+09 1.4855E+09 2.9104E-01 sec 
+ solve: time2/time1/time2-time1:: 1.4855E+09 1.4855E+09 3.7151E+01 sec 
+ total: time2/time1/time2-time1:: 1.4855E+09 1.4855E+09 3.7442E+01 sec 
+ 
+
+ ===============================================================
+    Job successfully completed !!!!   
+ ===============================================================
+ time meausures over np =           64
+ setup  time (avg/nid0/max):: 2.9107E-01 2.9104E-01 2.9146E-01 sec 
+ solve  time (avg/nid0/max):: 3.7151E+01 3.7151E+01 3.7151E+01 sec 
+ total  time (avg/nid0/max):: 3.7442E+01 3.7442E+01 3.7442E+01 sec 
+ ===============================================================
+  total time measures (CPU + OMP + GPU)
+    total computation         :: 3.7067E+01 sec 
+    total communication       :: 0.0000E+00 sec 
+    total io time             :: 0.0000E+00 sec 
+    total userchk time        :: 2.6117E-03 sec 
+    total computation/step    :: 3.7067E-02 sec 
+    total communication /step :: 0.0000E+00 sec 
+    total io time       /step :: 0.0000E+00 sec 
+    computation time/step/pts :: 4.5248E-06 sec 
+    io          time/step/pts :: 0.0000E+00 sec 
+    io          swaptime      :: 0.0000E+00 sec 
+    io/comp     time/step/pts):: 0.0000E+00 %   
+    communication/computation :: 0.0000E+00 %   
+ ===============================================================
+  
+call exitt: dying ...
+  
+  
+total elapsed time             :   1.48548E+09 sec
+total solver time incl. I/O    :   0.00000E+00 sec
+time/timestep                  :   0.00000E+00 sec
+CPU seconds/timestep/gridpt    :   0.00000E+00 sec
+
+Application 13478440 resources: utime ~2396s, stime ~39s, Rss ~40964, inblocks ~150673, outblocks ~465464

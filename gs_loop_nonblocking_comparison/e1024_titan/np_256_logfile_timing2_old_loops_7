@@ -1,0 +1,1449 @@
+/----------------------------------------------------------\
+|      _   __ ______ __ __  ______  ______   __  _____     |
+|     / | / // ____// //_/ / ____/ / __ _ / / _|/ __  /    |
+|    /  |/ // __/  / ,<   / /     / /__/   / / / / / /     |
+|   / /|  // /___ / /| | / /_ _  / /___   /_/ / / / /      |
+|  /_/ |_//_____//_/ |_|/_____/ /______/ /_/ /_/ /_/       |
+|                                                          |
+|----------------------------------------------------------|
+|                                                          |
+| NekCEM :  Nek5000 for Computational ElectroMagnetics     |
+|           Open Source Spectal Element DG Maxwell Solver  |
+| Source :  https://svn.mcs.anl.gov/repos/NEKCEM           |
+|                                                          |
+\----------------------------------------------------------/
+                                                              
+
+ Number of processors:          256
+ REAL    wdsize      :            8
+ INTEGER wdsize      :            4
+ MPI walltime:    1485478989.404441     
+ MPI walltime:    1485478989.404492     
+ call data_init2
+ IFCEM=   T
+ 
+ Preprocessor options::  
+   MOAB off at compile time
+   MPI on: -DNO_MPI not defined
+   GPU off at compile time
+   OpenMP off: -DOMP not defined
+ 
+ PDE/ODE Options:: 
+   IFPDE=   T
+   IFODE=   F  (quantum solver)
+ 
+ Mesh options:: 
+   IFHEX=   T  (hexahedral )
+   IFTET=   F  (tetrahedral)
+ 
+ Available basis:: 
+   IFDG     =   T  (SEDG   )
+   IFNEDELEC=   F  (Nedelec)
+
+
+  Beginning session:
+  /lustre/atlas/scratch/motten/csc235/NEKCEM/trunk/examples/openacc_gpu=8/np_256
+
+ 
+ done: data_init2::   6.4218044281005859E-003  sec
+ call read_init2
+ timer accuracy:   9.5367432E-08 sec
+
+ read .rea file
+ NPSCAL/nfield/ldimt            0            1            1
+ read .re2 file
+ byte swap:  F    6.543210      -2.9312772E+35
+ nelgt/nelgv/lelt:     1024     1024      128
+ lx1  /lx2  /lx3 :        8        8        8
+ call   mapelpr, mapping elements to processors         1024
+ call   set_proc_map()
+ ifgtp/gfdm/zper  F  F  F
+ get_vert, ncrnr=            8
+ ifgfdm  F
+ done:: set_proc_map()
+ RANK     0 IEG     965     966     973     974
+ element load imbalance:             0            4            4
+ done :: mapelpr, mapping elements to processors
+
+ gfdm/ifgtp/ifre2  F  F  T
+   reading mesh 
+   reading curved sides 
+   reading bc for ifld            1
+ done :: read .re2 file
+  
+ done :: close .rea file   0.79245E-01 sec
+
+ done: readat2 ::   7.9286098480224609E-002  sec
+ call para_init2
+ done: para_init2
+ setup mesh topology
+   Right-handed check complete for1024 elements. OK.
+            0            4         3840           24  Fgbtuple            8
+   setvert3d:   8      130624      351808      130624      130624
+   call usrsetvert
+   done :: usrsetvert
+
+gs_setup: 91648 unique labels shared
+   pairwise times (avg, min, max): 8.79673e-05 7.28846e-05 0.00010159
+   crystal router                : 0.000142303 0.000139904 0.000145698
+   all reduce                    : 0.00424602 0.00423551 0.0042527
+   used all_to_all method: pairwise
+   handle bytes (avg, min, max): 27924 27924 27924
+   buffer bytes (avg, min, max): 17440 17440 17440
+   setup_ds time 1.0036E-01 seconds   0  8      130624        1024
+ setup_dgds2:: init
+            0            4         3840           24  Fgbtuple           10
+   setvert3d:  10      223232      747520      223232      223232
+   call usrsetvert
+   done :: usrsetvert
+
+ set_vert time:: 2.0299E-03 seconds 
+gs_setup: 131072 unique labels shared
+   pairwise times (avg, min, max): 3.67721e-05 2.95877e-05 4.44889e-05
+   used all_to_all method: pairwise
+   crystal router                : 0.000192301 0.000189185 0.000197315
+   handle bytes (avg, min, max): 31172 31172 31172
+   buffer bytes (avg, min, max): 16384 16384 16384
+   gs_setup time:: 3.4661E-02 seconds 
+ setup_dsdg2 time:: 3.6744E-02 seconds   1  8      223232        1024
+ done :: setup mesh topology
+ .
+            8  max multiplicity
+npts/nelt/nxyz/nxzfl/nfield     2048        4      512     1536    1
+ call usrdat
+ done :: usrdat
+
+ call set_options
+ IFMAXWELL     T
+ IFSCHROD      F
+ IFDRIFT       F
+ IFDRUDE       F
+ IFLOREN       F
+ IFBEAM        F
+ IFWAKE        F
+ IFMOVW        F
+ IFFILTER      F
+ IFNAPY        F
+ IFWAKET       F
+ IFVARDT       F
+ IFPBG         F
+ IFDIELEC      F
+ IFPOISSON     F
+ IFGMRES       F
+ IFCG          F
+ IFSEMG        F
+ IFFDM         F
+ IFIC          F
+ IFSOL         T
+ IFSRC         F
+ IFSCAT        F
+ IFSFTF        F
+ IFCENTRAL     F
+ IFUPWIND      T
+ IFDEALIAS     F
+ IFTM          F
+ IFTE          T
+ IFEIG         F
+ IFEXP         F
+ IFRK45        T
+ IFRK44        F
+ IFRK33        F
+ IFRK22        F
+ IFSIM5        F
+ IFSIM4        F
+ IFSIM3        F
+ IFSIM2        F
+ IFSIM1        F
+ IFDTCTL       F
+ IFPEC         F
+ IFROB         F
+ IFNEU         F
+ IFINHOM       F
+ IFPML         F
+ IFCUR         F
+ IFDTN         F
+ IFNM          F
+ IFRESTART     F
+ 
+ cspeed   =    1.000000000000000     
+ permit_0 =    1.000000000000000     
+ permea_0 =    1.000000000000000     
+ nmscale  =    1.000000000000000     
+ 
+ done :: set_options
+
+ call setlog
+ ifflow/ifheat/nfield  T  F            1
+ ifield0/nfld            1            1
+ IFSTRS =  F
+ IFCHAR =  F
+ IFAXIS =  F
+ IFMVBD =  F
+ IFMELT =  F
+ IFMODEL=  F
+ IFKEPS =  F
+   
+ IFVCOR =  T
+ IFINTQ =  F
+ IFCWUZ =  F
+ IFSWALL=  F
+ IFGEOM =  F
+ IFSURT =  F
+ IFWCNO =  F
+ IFCEM  =  T
+   
+ IFADVC for field            1    =   F
+ IFNONL for field            1    =   F
+ done :: setlog
+
+ call gengeom
+ genwz
+ gencoor
+ geom1
+ Vol:    7.999999999999998         7.999999999999998     
+ volumn
+ setdef
+ done :: generate geomerty data
+  
+ done :: gengeom
+
+ call usrdat2
+ done :: usrdat2
+
+ call geom_reset
+ this is bm2:   4.8010709843112556E-005
+ Vol:    248.0502134423986         248.0502134423986     
+ done :: geom_reset
+
+ call set_unr   
+ done :: set_unr
+
+  Mesh consistency check, OK.
+ call load_semhat_weighted
+ done :: load_semhat_weighted
+
+ dofs:                        0       524288        19456
+ MPI walltime:    1485478989.640373     
+ 
+ Preprocessor options::  
+   hpm off: -DHPM not defined
+ 
+
+ MPI walltime:    1485478989.640401     
+ IFMAXWELL     T
+ IFSCHROD      F
+ IFDRIFT       F
+ IFDRUDE       F
+ IFLOREN       F
+ IFBEAM        F
+ IFWAKE        F
+ IFMOVW        F
+ IFFILTER      F
+ IFNAPY        F
+ IFWAKET       F
+ IFVARDT       F
+ IFPBG         F
+ IFDIELEC      F
+ IFPOISSON     F
+ IFGMRES       F
+ IFCG          F
+ IFSEMG        F
+ IFFDM         F
+ IFIC          F
+ IFSOL         T
+ IFSRC         F
+ IFSCAT        F
+ IFSFTF        F
+ IFCENTRAL     F
+ IFUPWIND      T
+ IFDEALIAS     F
+ IFTM          F
+ IFTE          T
+ IFEIG         F
+ IFEXP         F
+ IFRK45        T
+ IFRK44        F
+ IFRK33        F
+ IFRK22        F
+ IFSIM5        F
+ IFSIM4        F
+ IFSIM3        F
+ IFSIM2        F
+ IFSIM1        F
+ IFDTCTL       F
+ IFPEC         F
+ IFROB         F
+ IFNEU         F
+ IFINHOM       F
+ IFPML         F
+ IFCUR         F
+ IFDTN         F
+ IFNM          F
+ IFRESTART     F
+ 
+ cspeed   =    1.000000000000000     
+ permit_0 =    1.000000000000000     
+ permea_0 =    1.000000000000000     
+ nmscale  =    1.000000000000000     
+ 
+ start: initialize geom and fields
+ done: initialization geom/fields
+ start: cem_set_fc_ptr, volume index j=cemface(i)
+ done: cem_set_fc_ptr, ncemface=          1536
+ npts         2048            8            8            8            4
+ permit_max=    1.000000000000000     
+ permit_min=    1.000000000000000     
+ permea_max=    1.000000000000000     
+ permea_min=    1.000000000000000     
+ start: cem_maxwell_materials
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ done: cem_maxwell_materials
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            3            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            4            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            3            0
+ RRR            2            0
+ RRR            1            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            4            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            3            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            1            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            1            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ done: cem_maxwell_materials
+ start: cem_alternatve_flux_ptr-> index setting
+ done: cem_alternate_flux_ptr
+ nid=0: gs_op_fields: single vector   8.5902214050292969E-004 sec
+ nid=0: gs_op_fields: multi  vector   3.5285949707031250E-004 sec
+ gs_op_fields: chose multi vector 
+ done: inverse mass matrix
+  dxmin=   4.0084740952239351E-002
+ dt=   2.0000000000000001E-004 , CFL=   4.9894297742449781E-003
+ IFDRIFT=  F
+ usersol: done, IFSOL=  T
+ userini: done, IFSOL=  T
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         0    4    2    7   14     2048       0.00000E+00       2.00000E-04       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00 CPU: L2  
+         0    4    2    7   14     2048       0.00000E+00       2.00000E-04       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00       0.00000E+00 CPU: Linf
+ userchk: done, ifrestart=  F
+ IFDOUBLE=  T
+ param(81)=            0
+ param(82)=            1
+ param(83)=            0
+ dumpno   =            0
+ IFRK,IFSIM,IFBDF  T  F  F
+ param(17): defined as     0.000000000000000     
+ initial time=    0.000000000000000      , final time= 
+   1.0000000000000000E+020
+ total nsteps=         1000
+ iocomm=         1000 , iostep=         1000
+ . 
+ ============================
+ ========  BEGIN RUN ========
+ ============================
+ istep=     1    to      1000
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         1    4    2    7   14     2048       2.00000E-04       2.00000E-04       2.83230E-13       2.83221E-13       2.83222E-13       3.00931E-17       3.44069E-16       4.75172E-16       9.34482E-03       3.54743-317 CPU: L2  
+         1    4    2    7   14     2048       2.00000E-04       2.00000E-04       1.97989E-12       1.97989E-12       1.97989E-12       2.28223E-15       5.10487E-15       5.10470E-15       9.34482E-03       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         2    4    2    7   14     2048       4.00000E-04       2.00000E-04       5.65586E-13       5.65569E-13       5.65569E-13       1.15006E-16       1.36319E-15       1.88796E-15       1.79667E-02       3.54743-317 CPU: L2  
+         2    4    2    7   14     2048       4.00000E-04       2.00000E-04       3.93176E-12       3.93175E-12       3.93175E-12       4.53160E-15       2.03193E-14       2.03186E-14       1.79667E-02       3.54743-317 CPU: Linf
+ RRR            1            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            2            0
+ RRR            3            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            1            0
+ RRR            2            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            4            0
+ RRR            3            0
+ RRR            1            0
+ RRR            1            0
+ RRR            2            0
+ RRR            2            0
+ RRR            2            0
+ RRR            3            0
+ RRR            3            0
+ RRR            3            0
+ RRR            4            0
+ RRR            4            0
+ RRR            4            0
+ RRR            1            0
+ RRR            3            0
+ RRR            4            0
+ RRR            2            0
+ RRR            4            0
+ RRR            3            0
+ RRR            4            0
+ RRR            1            0
+ RRR            2            0
+ RRR            3            0
+ RRR            4            0
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         3    4    2    7   14     2048       6.00000E-04       2.00000E-04       8.47086E-13       8.47060E-13       8.47061E-13       2.56270E-16       3.05186E-15       4.22786E-15       2.69268E-02       3.54743-317 CPU: L2  
+         3    4    2    7   14     2048       6.00000E-04       2.00000E-04       5.85599E-12       5.85598E-12       5.85598E-12       6.74802E-15       4.54942E-14       4.59077E-14       2.69268E-02       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         4    4    2    7   14     2048       8.00000E-04       2.00000E-04       1.12775E-12       1.12771E-12       1.12771E-12       4.53745E-16       5.40002E-15       7.48175E-15       3.59366E-02       3.54743-317 CPU: L2  
+         4    4    2    7   14     2048       8.00000E-04       2.00000E-04       7.75298E-12       7.75296E-12       7.75296E-12       8.93141E-15       8.04820E-14       8.18234E-14       3.59366E-02       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         5    4    2    7   14     2048       1.00000E-03       2.00000E-04       1.40759E-12       1.40754E-12       1.40754E-12       7.07267E-16       8.39922E-15       1.16380E-14       4.45566E-02       3.54743-317 CPU: L2  
+         5    4    2    7   14     2048       1.00000E-03       2.00000E-04       9.62313E-12       9.62309E-12       9.62310E-12       1.10818E-14       1.25137E-13       1.28175E-13       4.45566E-02       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         6    4    2    7   14     2048       1.20000E-03       2.00000E-04       1.68662E-12       1.68657E-12       1.68657E-12       1.01667E-15       1.20400E-14       1.66847E-14       5.32496E-02       3.54743-317 CPU: L2  
+         6    4    2    7   14     2048       1.20000E-03       2.00000E-04       1.14668E-11       1.14668E-11       1.14668E-11       1.31991E-14       1.79313E-13       1.84852E-13       5.32496E-02       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         7    4    2    7   14     2048       1.40000E-03       2.00000E-04       1.96486E-12       1.96480E-12       1.96480E-12       1.38180E-15       1.63145E-14       2.26101E-14       6.20105E-02       3.54743-317 CPU: L2  
+         7    4    2    7   14     2048       1.40000E-03       2.00000E-04       1.32845E-11       1.32843E-11       1.32843E-11       1.52833E-14       2.42870E-13       2.51910E-13       6.20105E-02       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         8    4    2    7   14     2048       1.60000E-03       2.00000E-04       2.24234E-12       2.24227E-12       2.24227E-12       1.80250E-15       2.12147E-14       2.94046E-14       7.07824E-02       3.54743-317 CPU: L2  
+         8    4    2    7   14     2048       1.60000E-03       2.00000E-04       1.50764E-11       1.50762E-11       1.50762E-11       1.73345E-14       3.15664E-13       3.29459E-13       7.07824E-02       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+         9    4    2    7   14     2048       1.80000E-03       2.00000E-04       2.51905E-12       2.51897E-12       2.51897E-12       2.27861E-15       2.67326E-14       3.70577E-14       7.92534E-02       3.54743-317 CPU: L2  
+         9    4    2    7   14     2048       1.80000E-03       2.00000E-04       1.68430E-11       1.68428E-11       1.68428E-11       1.93526E-14       3.97555E-13       4.17555E-13       7.92534E-02       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+        10    4    2    7   14     2048       2.00000E-03       2.00000E-04       2.79503E-12       2.79493E-12       2.79494E-12       2.80999E-15       3.28616E-14       4.55598E-14       8.84583E-02       3.54743-317 CPU: L2  
+        10    4    2    7   14     2048       2.00000E-03       2.00000E-04       1.85847E-11       1.85844E-11       1.85844E-11       2.13377E-14       4.88405E-13       5.16254E-13       8.84583E-02       3.54743-317 CPU: Linf
+
+    istep   nelt  nels  N  npt1    npts   time         dt     HXerr     HYerr     HZerr     EXerr     EYerr     EZerr    cpu_t   cpu_t_pts
+      1000    4    2    7   14     2048       2.00000E-01       2.00000E-04       8.56892E-11       8.44324E-11       8.44310E-11       1.39800E-11       6.80451E-11       9.65415E-11       8.66067E+00       4.22838E-06 CPU: L2  
+      1000    4    2    7   14     2048       2.00000E-01       2.00000E-04       6.08488E-10       5.80880E-10       5.80880E-10       7.75267E-11       5.23489E-10       1.04592E-09       8.66067E+00       4.22838E-06 CPU: Linf
+
+ max timestep=     1000; estimated remaining time (min)=      0.00
+ MPI walltime:    1485478998.358042     
+ 
+ Preprocessor options::  
+ 
+ IFSE=F, IFDG=T IFNEDELEC=F, IFCG=F, IFGMRES=F, IFDIRECT=F, IFGFDM=F, IFGFDMDD=F, IFFDM=F, IFSEMG=F
+ SRC=F, TM=F, TE=T, CENTRAL=F, UPWIND=T, PML=F, PEC=F EIG=F, EXP=F, RK45=T, RK4=F, RK3=F, RK2=FSIM5=F, SIM4=F, SIM3=F, SIM2=F, SIM1=F, BDF1=F, BDF2=F
+ DEALIAS=F, SCAT=F, SFTF=F, NM=F, DIELEC=F, FILTER=F, SOL=T, POISSON=F, DRUDE=F, LORENTZ=F, HYDRO=F, DRIFT=F, EXCT=F, INHOM=F, Dealias_M=  8, Krylov_Dim=  1
+
+ 
+
+ setup: time2/time1/time2-time1:: 1.4855E+09 1.4855E+09 2.3542E-01 sec 
+ solve: time2/time1/time2-time1:: 1.4855E+09 1.4855E+09 8.7176E+00 sec 
+ total: time2/time1/time2-time1:: 1.4855E+09 1.4855E+09 8.9531E+00 sec 
+ 
+
+ ===============================================================
+    Job successfully completed !!!!   
+ ===============================================================
+ time meausures over np =          256
+ setup  time (avg/nid0/max):: 2.3575E-01 2.3542E-01 2.3630E-01 sec 
+ solve  time (avg/nid0/max):: 8.7176E+00 8.7176E+00 8.7176E+00 sec 
+ total  time (avg/nid0/max):: 8.9533E+00 8.9531E+00 8.9539E+00 sec 
+ ===============================================================
+  total time measures (CPU + OMP + GPU)
+    total computation         :: 8.6597E+00 sec 
+    total communication       :: 0.0000E+00 sec 
+    total io time             :: 0.0000E+00 sec 
+    total userchk time        :: 1.2073E-03 sec 
+    total computation/step    :: 8.6597E-03 sec 
+    total communication /step :: 0.0000E+00 sec 
+    total io time       /step :: 0.0000E+00 sec 
+    computation time/step/pts :: 4.2284E-06 sec 
+    io          time/step/pts :: 0.0000E+00 sec 
+    io          swaptime      :: 0.0000E+00 sec 
+    io/comp     time/step/pts):: 0.0000E+00 %   
+    communication/computation :: 0.0000E+00 %   
+ ===============================================================
+  
+call exitt: dying ...
+  
+  
+total elapsed time             :   1.48548E+09 sec
+total solver time incl. I/O    :   0.00000E+00 sec
+time/timestep                  :   0.00000E+00 sec
+CPU seconds/timestep/gridpt    :   0.00000E+00 sec
+
+Application 13478432 resources: utime ~2320s, stime ~123s, Rss ~91864, inblocks ~573138, outblocks ~1861697
