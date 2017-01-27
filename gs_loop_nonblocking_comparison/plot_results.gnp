@@ -50,5 +50,5 @@ set terminal png enhanced
 set xlabel "Number of MPI Ranks"
 set ylabel "Time (s)"
 set output 'titan_e1024_7.png'
-plot 'timing1_7_old_loops_e1024_titan' u 1:2 w lp t 'Timing 1 - Old', 'timing2_7_old_loops_e1024_titan' u 1:2 w lp t 'Timing 2 - Old', 'timing3_7_old_loops_e1024_titan' u 1:2 w lp t 'Timing 3 - Old'
+plot 'timing1_7_new_loops_e1024_titan' u 1:2 w lp t 'Timing 1 - New', 'timing2_7_new_loops_e1024_titan' u 1:2 w lp t 'Timing 2 - New', 'timing3_7_new_loops_e1024_titan' u 1:2 w lp t 'Timing 3 - New', 'timing1_7_old_loops_e1024_titan' u 1:2 w lp t 'Timing 1 - Old', 'timing2_7_old_loops_e1024_titan' u 1:2 w lp t 'Timing 2 - Old', 'timing3_7_old_loops_e1024_titan' u 1:2 w lp t 'Timing 3 - Old'
 
