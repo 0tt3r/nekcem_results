@@ -1,0 +1,30 @@
+
+
+
+
+b14/b14.rea:      -16384  3       16384           NEL,NDIM,NELV
+b15/b15.rea:      -32768  3       32768           NEL,NDIM,NELV
+b16/b16.rea:      -65536  3       65536           NEL,NDIM,NELV
+b17/b17.rea:     -131072  3      131072           NEL,NDIM,NELV
+b18/b18.rea:     -262144  3      262144           NEL,NDIM,NELV
+b19/b19.rea:     -524288  3      524288           NEL,NDIM,NELV
+b20/b20.rea:    -1048576  3     1048576           NEL,NDIM,NELV
+b21/b21.rea:    -2097152  3     2097152           NEL,NDIM,NELV
+
+
+These cases were meant to be run on 512 nodes of Cetus, in c32
+mode (32 MPI ranks per node).
+
+
+Polynomial degrees ranging from 2 (lx1=3) to 11 (lx1=12) were
+considered.
+
+The largest element counts were not used with the highest polynomial
+order -- that would yield too many points.
+
+The cases considered are given in the table below.
+
+All cases were run with zsin.usr.
+
+The data files are printed as follows:
+ranks N Nel/rank Nelgt points pts/rank iters elapsed_time_scalar dofs/sec_scalar time/iter_scalar time/iter-pt_scalar elapsed_time_vector dofs/sec_vector time/iter_vector time/iter-pt_vector 
