@@ -2,7 +2,7 @@
 nek5000
 obj/*
 b*/nek
-
+SESSION.NAME
 
 # Ignore everything in runs director
 runs*/*/*
