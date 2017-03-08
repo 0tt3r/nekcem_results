@@ -4,10 +4,10 @@ obj/*
 b*/nek
 SESSION.NAME
 
-# Ignore everything in runs director
+# Ignore everything in runs directory
 runs*/*/*
 
-# But not these files...
+# But not the logfile
 !runs*/*/logfile
-# ...even if they are in subdirectories
+
 
