@@ -1,0 +1,107 @@
+## Pass in the computer name as $1. Pass in some descriptor specifying what you are
+## compiling as $2 (i.e., rg - regular MPI, lw - lightweight MPI, rg-nb - regular MPI, nonblocking
+##
+## The script will compile using the makenek.${computer}.${example} script
+## and submit using the nek.${computer} script. It will then create a
+## runs_${computer} directory with lots of sub directories - ${dir_prefix}_n#_b#,
+## which are the runs for a specific lx1 and b*. The runs will be submitted
+## within that folder, and the output will come out of that folder.
+
+default_ranks_per_node=32
+defaults_num_nodes=512
+
+computer=$1
+dir_prefix=$2
+input_ranks_per_node=$3
+input_num_nodes=$4
+
+if [ -z "$1" ]
+then
+    echo "No computer name supplied (should be first argument)"
+    exit
+fi
+if [ -z "$2" ]
+then
+    echo "No dir_prefix supplied (should be second argument)"
+    exit
+fi
+
+if [ -z "$3" ]
+then
+    echo "Using default ranks per node of "default_ranks_per_node
+    ranks_per_node=default_ranks_per_node
+elif
+then
+    ranks_per_node=input_ranks_per_node
+fi
+
+if [ -z "$4" ]
+then
+    echo "Using default number of nodes of "default_num_nodes
+    num_nodes=default_num_nodes
+elif
+then
+    num_nodes=input_num_nodes
+fi
+
+makenek_file=makenek.${computer}.${dir_prefix}
+
+#Check if makenek file exists for this computer and dir_prefix
+if [ ! -f $makenek_file ]; then
+    echo "makenek file not found for "${computer}" and "${dir_prefix}
+    exit
+fi
+
+if [ ! -f nek.${computer} ]; then
+    echo "nek file not found for "${computer}
+    exit
+fi
+
+
+#Copy in the run file into each example directory
+for dir in {b14,b15,b16,b17,b18,b19,b20,b21};
+do
+    cp nek.${computer} ${dir}/nek
+done
+
+# Make the runs directory
+mkdir runs_${computer}
+
+## Change the set of number of gridpoints in each direction to run here
+## NOTE: If you want to run only a single lx1, do not use brackets
+## i.e.
+## for lx1 in 2:
+##
+for lx1 in {2,3,4,5,6,7,8,9,10,11};
+do
+    #Change the lx1 parameter
+    sed -rie "s/(parameter \(lx1=)[^=]*$/\1 $lx1)/" SIZE
+
+    #head SIZE
+
+    #Clean and compile
+    make clean
+    ./makenek.${computer}.${dir_prefix} zsin
+
+    ## Change the examples to run here
+    ## NOTE: If you want to run only a single example, do not use brackets
+    ## i.e.
+    ## for dir in b14:
+    for dir in {b14,b15,b16,b17,b18,b19,b20,b21};
+    do
+        #Make new directory
+        new_dir=runs_${computer}/${dir_prefix}_n${lx1}_${dir}
+        echo 'Running in '${new_dir}
+        mkdir ${new_dir}
+        #Copy b## into new dir
+        cp ${dir}/* ${new_dir}
+        #Copy executable
+        cp nek5000 ${new_dir}
+        cd ${new_dir}
+        #Submit
+        chmod +x ./nek #Make sure nek is executable
+        ./nek ${dir} ${ranks_per_node} ${num_nodes}
+        cd ../../
+    done
+done
+

@@ -1,0 +1,13 @@
+#Ignore list
+nek5000
+obj/*
+b*/nek
+
+
+# Ignore everything in runs director
+runs*/*/*
+
+# But not these files...
+!runs*/*/logfile
+# ...even if they are in subdirectories
+

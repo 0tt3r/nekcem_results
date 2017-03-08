@@ -1,0 +1,5 @@
+
+On Cetus:
+rg - default MPI using /soft/compilers/ibmcmp-may2016/xlf/bg/14.1/bin/.orig/bgxlf
+lw - MPICH3 CH4 using /projects/aurora_app/mpich3-ch4-ofi/install/gnu/bin/mpifort
+      and export MPICH_FC=/soft/compilers/ibmcmp-may2016/xlf/bg/14.1/bin/bgxlf

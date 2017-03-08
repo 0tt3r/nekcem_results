@@ -1,0 +1,40 @@
+
+
+computer=$1
+
+mkdir results/${computer}
+
+## Check if there is a run directory
+if [ ! -d runs_${computer} ];
+then
+    echo 'No runs directory for '${computer}' found!'
+    exit
+fi
+
+## This function gets all of the dir_prefixes
+function prefix {
+    ## Get the run types
+    for dir in runs_${computer}/*
+    do
+        echo "${dir%_n*}"
+    done | sort -u | sed -e 's/runs_.*\///g'
+}
+
+## Loop through the prefixes
+prefix | while read prefix
+do
+    echo ${prefix}
+    echo '#ncores order elem/core total_elem total_gp gp/core n_it scalar_t/field scalar_dof/s scalar_t/it scalar_t/it/p scalar_dof/s scalar_t/it scalar_t/it/p' > results/${computer}/${prefix}_summary_data
+    for lx1 in {2,3,4,5,6,7,8,9};
+    do
+        for dir in {b14,b15,b16,b17,b18,b19,b20,b21};
+        do
+            #Get scalar data
+            scalar=`grep scalar runs_${computer}/${prefix}_n${lx1}_${dir}/logfile | awk '{print $3" "$4" "$5" "$6" "$7" "$8" "$9" "$10" "$11" "$12" "$13}'`
+            #Get vector data
+            vector=`grep vector runs_${computer}/${prefix}_n${lx1}_${dir}/logfile | awk '{print " "$10" "$11" "$12" "$13}'`
+            #Append data to file
+            echo $scalar $vector >> results/${computer}/${prefix}_summary_data
+        done
+    done
+done
