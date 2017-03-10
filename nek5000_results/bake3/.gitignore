@@ -2,6 +2,8 @@
 nek5000
 obj/*
 b*/nek
+b*/*.re2
+b*/*.map
 SESSION.NAME
 
 # Ignore everything in runs directory
