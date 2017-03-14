@@ -641,13 +641,13 @@ c-----------------------------------------------------------------------
       real w(lxyz),u(lxyz),g(lg,lxyz),h1(lxyz),h2(lxyz),b(lxyz)
       real ju(lxyz),us(lxyz),ut(lxyz)
 
-      nxq = nx1+2 ! Number of quadrature points
+      nxq = nx1+2               ! Number of quadrature points
 
       lxyzq = nxq**ldim
 
       call intp_rstd (ju,u,lx1,nxq,if3d,0) ! 0 --> Fwd interpolation
       do i=1,lxyzq
-         ju(i)=ju(i)*h2(i) !! h2 must be on the fine grid, w/ quad wts
+        ju(i)=ju(i)*h2(i)       !! h2 must be on the fine grid, w/ quad wts
       enddo
       call intp_rstd (w,ju,lx1,nxq,if3d,1) ! 1 --> ju-->u
 
@@ -656,8 +656,8 @@ c-----------------------------------------------------------------------
 c-----------------------------------------------------------------------
       subroutine axhm1(pap,ap1,p1,h1,h2)
 
-c     Vector conjugate gradient matvec for solution of uncoupled 
-c     Helmholtz equations 
+c     Vector conjugate gradient matvec for solution of uncoupled
+c     Helmholtz equations
 
       include 'SIZE'
       include 'TOTAL'
@@ -698,8 +698,8 @@ c     Helmholtz equations
 c-----------------------------------------------------------------------
       subroutine axhm3(pap,ap1,ap2,ap3,p1,p2,p3,h1,h2)
 
-c     Vector conjugate gradient matvec for solution of uncoupled 
-c     Helmholtz equations 
+c     Vector conjugate gradient matvec for solution of uncoupled
+c     Helmholtz equations
 
       include 'SIZE'
       include 'TOTAL'
@@ -1089,3 +1089,213 @@ c-----------------------------------------------------------------------
       return
       end
 c-----------------------------------------------------------------------
+      subroutine axhm3_acc(pap,ap1,ap2,ap3,p1,p2,p3,h1,h2)
+      include 'SIZE'
+      include 'TOTAL'
+
+      !w = ap1 u = p1 g = gf h1 = h1 h2 = h2 b = bm1 ju = ur us = us ut = ut
+
+      !b = ju = ur, a = u = p1, ba = jgl(i), ab = jgt(i)
+      !specmnp(b,nb,a,na,ba,ab,if3d,w,ldw)
+c
+c     -  Spectral interpolation from A to B via tensor products
+c     -  scratch arrays: w(na*na*nb + nb*nb*na)
+c
+c     5/3/00  -- this routine replaces specmp in navier1.f, which
+c                has a potential memory problem
+c
+c
+      real pap(3)
+      integer lx,lg,ldg
+      parameter (lx=lx1*ly1*lz1,lg=3+3*(ldim-2))
+
+      real ap1(lx,lelt),ap2(lx,lelt),ap3(lx,lelt)
+      real  p1(lx,lelt), p2(lx,lelt), p3(lx,lelt)
+      real  h1(lx,lelt), h2(lx,lelt)
+
+      real ur(lx),us(lx),ut(lx)
+      common /ctmp1/ ur,us,ut
+
+      real         gf(lg,lx,lelt) ! Equivalence new gf() data
+      equivalence (gf,g1m1)     ! layout to g1m1...g6m1
+
+      integer ip,l,na,nb,nxq
+      integer e,i,j,k,l0
+c$$$      logical is_present,acc_nek_present
+c$$$      is_present=(acc_nek_present(v ,1).and.acc_nek_present(u ,1).and.
+c$$$     $            acc_nek_present(A ,1).and.acc_nek_present(Bt,1).and.
+c$$$     $            acc_nek_present(Ct,1))
+      nxq = nx1+2               ! Number of quadrature points
+      lxyzq = nxq**ldim
+
+!$ACC PARALLEL LOOP PRESENT(b,a,ba,ab) GANG WORKER
+!     $ACC&              PRIVATE(w)
+      do e=1,nelt
+        call ax_e_acc(ap1(1,e),p1(1,e),gf(1,1,e),h1(1,e),h2(k,1)
+     $       ,bm1(1,1,1,e),ur,us,ut)
+
+        !$ACC LOOP
+        do i=1,lx
+          pap(1)=pap(1)+ap1(i,e)*p1(i,e)
+        enddo
+
+        call ax_e_acc(ap2(1,e),p2(1,e),gf(1,1,e),h1(1,e),h2(k,1)
+     $       ,bm1(1,1,1,e),ur,us,ut)
+
+!     $ACC LOOP
+        do i=1,lx
+          pap(2)=pap(2)+ap2(i,e)*p2(i,e)
+        enddo
+
+        call ax_e_acc(ap3(1,e),p3(1,e),gf(1,1,e),h1(1,e),h2(k,1)
+     $       ,bm1(1,1,1,e),ur,us,ut)
+
+!     $ACC LOOP
+        do i=1,lx
+          pap(3)=pap(3)+ap3(i,e)*p3(i,e)
+        enddo
+
+        k=k+nxq*nxq*nxq
+      enddo
+!     $ACC END PARALLEL LOOP
+
+      return
+      end
+c
+      subroutine ax_e_acc(w,u,g,h1,h2,b,ju,us,ut) ! Local matrix-vector product
+      include 'SIZE'
+      include 'TOTAL'
+
+      parameter (lxyz=lx1*ly1*lz1,lg=3+3*(ldim-2))
+      real w(lxyz),u(lxyz),g(lg,lxyz),h1(lxyz),h2(lxyz),b(lxyz)
+      real ju(lxyz),us(lxyz),ut(lxyz)
+
+      nxq = nx1+2               ! Number of quadrature points
+
+      lxyzq = nxq**ldim
+      call intp_rstd_acc(ju,u,lx1,nxq,if3d,0)
+
+      do i=1,lxyzq
+        ju(i)=ju(i)*h2(i)     !! h2 must be on the fine grid, w/ quad wts
+      enddo
+
+      call intp_rstd_acc(w,ju,lx1,nxq,if3d,1)
+
+      return
+      end
+
+c-----------------------------------------------------------------------
+      subroutine intp_rstd_acc(ju,u,mx,md,if3d,idir)
+      !$ACC ROUTINE
+      include 'SIZE'
+
+      real    ju(1),u(1)
+      logical if3d
+
+      parameter (ldg=lxd**3,lwkd=4*lxd*lxd)
+      common /dgrad/ d(ldg),dt(ldg),dg(ldg),dgt(ldg),jgl(ldg),jgt(ldg)
+     $     , wkd(lwkd)
+      real jgl,jgt
+      parameter (ld=2*lxd)
+      common /ctmp0/ w(ld**ldim,2)
+      integer icalld
+      save icalld
+      data icalld/0/
+
+
+      ldw = 2*(ld**ldim)
+      if (icalld.eq.0) then
+        call get_int_ptr(i,mx,md) ! GLL-->GL pointer
+        icalld = 1
+!!$ACC COPY(ab,ba) !FIXME
+      endif
+
+      if(idir.eq.0) then
+        call specmpn_acc(ju,md,u,mx,jgl(i),jgt(i),if3d,w,ldw)
+      else
+        call specmpn_acc(ju,mx,u,md,jgt(i),jgl(i),if3d,w,ldw)
+      endif
+
+      return
+      end
+
+c-------------------------------------------------------
+      subroutine specmpn_acc(b,nb,a,na,ba,ab,if3d,w,ldw)
+!     $ACC ROUTINE VECTOR
+      logical if3d
+c
+      integer nab,nbb,i,j,i0,l0,j0,k,k0,na,nb,ldw
+      real b(nb*nb*nb),a(na*na*na),ba(nb,na),ab(na,nb)
+      real w(ldw)
+
+      real tmp
+c
+      nab = na*nb
+      nbb = nb*nb
+      l0=na*na*nb + 1
+
+      !     NEW     call mxm(ba,nb,a,na,w,na*na)
+!     OLD     call mxm(A,nv,u,nu,work,nu*nu)
+
+!     $ACC LOOP COLLAPSE(2)
+      do j=1,na*na
+        do i=1,nb
+          i0 = i + nb*(j-1)
+          tmp = 0.0
+!     $ACC LOOP SEQ
+          do k=1,na
+!     w(i,j) = w(i,j) + ba(i,k) * a(k,j)
+            k0 = k + na*(j-1)
+            tmp = tmp + ba(i,k) * a(k0) !FIXME
+          enddo
+!     $ACC END LOOP
+          w(i0) = tmp
+        enddo
+      enddo
+!     $ACC END LOOP
+
+!     $ACC LOOP COLLAPSE(3) VECTOR
+      do i=1,na
+!     call mxm(w(k),nb,ab,na,w(l),nb)
+!     call mxm(work(nv*nu*i),nv,Bt,nu,work2(nv*nv*i),nv)
+        do j=1,nb
+          do l=1,nb
+            i0 = l + nb*(j-1) + nb*nb*(i-1) !FIXME for one w use l=na*na*nb + 1
+            tmp = 0.0
+!     $ACC LOOP SEQ
+            do k=1,na
+              j0 = l + nb*(k-1) + nb*na*(i-1)
+              k0 = k + na*(j-1)
+!     work2(j,l,i) = work2(j,l,i) + work(l,k,i)*Bt(k,j) !FIXME
+              tmp = tmp + w(j0)*ab(k,j)
+            enddo
+!     $ACC END LOOP
+            w(i0+l0) = tmp      !FIXME
+          enddo
+        enddo
+      enddo
+!     $ACC END LOOP
+
+!     call mxm(w(l),nbb,ab,na,b,nb)
+!     call mxm(work2,nv*nv,Ct,nu,v,nv)
+!     $ACC LOOP COLLAPSE(2) VECTOR
+      do j=1,nb
+        do i=1,nbb
+          j0 = i + nb*nb*(j-1)
+          tmp = 0.0
+!     $ACC LOOP SEQ
+          do k=1,na
+            i0 = i + nb*nb*(k-1)
+            k0 = k + na*(j-1)
+!     b(i,j) = b(i,j) + w2(i,k)*ab(k,j)
+            tmp = tmp + w(i0+l0)*ab(k,j)
+          enddo
+!     $ACC END LOOP
+          b(j0) = tmp
+        enddo
+      enddo
+!     $ACC END LOOP
+
+
+      return
+      end
