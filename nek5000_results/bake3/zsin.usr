@@ -1182,64 +1182,64 @@ c$$$          print*,'ba,ab',ba(i,j),ab(j,i)
 c$$$        enddo
 c$$$      enddo
 !     call mxm(ba,nb,a,na,w,na*na)
-!     $ACC LOOP VECTOR COLLAPSE(2)
+!$ACC LOOP VECTOR COLLAPSE(2)
       do j=1,na*na
         do i=1,nb
           i0 = i + nb*(j-1)
           tmp = 0.0
-!     $ACC LOOP SEQ
+!$ACC LOOP SEQ
           do k=1,na
 !     w(i,j) = w(i,j) + ba(i,k) * a(k,j)
             k0 = k + na*(j-1)
             tmp = tmp + ba(i,k) * a(k0) !FIXME
           enddo
-!     $ACC END LOOP
+!$ACC END LOOP
           w(i0) = tmp
         enddo
       enddo
-!     $ACC END LOOP
+!$ACC END LOOP
 c$$$      do i=1,20
 c$$$        print*,'w',w(i)
 c$$$      enddo
-!     $ACC LOOP COLLAPSE(3) VECTOR
+!$ACC LOOP COLLAPSE(3) VECTOR
       do i=1,na
 !     call mxm(w(k),nb,ab,na,w(l),nb)
         do j=1,nb
           do l=1,nb
             i0 = l + nb*(j-1) + nb*nb*(i-1) !FIXME for one w use l=na*na*nb + 1
             tmp = 0.0
-!     $ACC LOOP SEQ
+!$ACC LOOP SEQ
             do k=1,na
               j0 = l + nb*(k-1) + nb*na*(i-1)
               k0 = k + na*(j-1)
 !     work2(j,l,i) = work2(j,l,i) + work(l,k,i)*Bt(k,j) !FIXME
               tmp = tmp + w(j0)*ab(k,j)
             enddo
-!     $ACC END LOOP
+!$ACC END LOOP
             w(i0+l0) = tmp      !FIXME
           enddo
         enddo
       enddo
-!     $ACC END LOOP
+!$ACC END LOOP
 
 !     call mxm(w(l),nbb,ab,na,b,nb)
-!     $ACC LOOP COLLAPSE(2) VECTOR
+!$ACC LOOP COLLAPSE(2) VECTOR
       do j=1,nb
         do i=1,nbb
           j0 = i + nb*nb*(j-1)
           tmp = 0.0
-!     $ACC LOOP SEQ
+!$ACC LOOP SEQ
           do k=1,na
             i0 = i + nb*nb*(k-1)
             k0 = k + na*(j-1)
 !     b(i,j) = b(i,j) + w2(i,k)*ab(k,j)
             tmp = tmp + w(i0+l0)*ab(k,j)
           enddo
-!     $ACC END LOOP
+!$ACC END LOOP
           b(j0) = tmp
         enddo
       enddo
-!     $ACC END LOOP
+!$ACC END LOOP
 
 
       return
