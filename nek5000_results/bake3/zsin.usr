@@ -656,7 +656,7 @@ c-----------------------------------------------------------------------
 
       call intp_rstd (ju,u,lx1,nxq,if3d,0) ! 0 --> Fwd interpolation
       do i=1,lxyzq
-        ju(i)=ju(i)*h2(i)       !! h2 must be on the fine grid, w/ quad wts
+         ju(i)=ju(i)*h2(i)      !! h2 must be on the fine grid, w/ quad wts
       enddo
       call intp_rstd (w,ju,lx1,nxq,if3d,1) ! 1 --> ju-->u
 
@@ -743,6 +743,8 @@ c     Helmholtz equations
          do i=1,lx
            pap(1)=pap(1)+ap1(i,e)*p1(i,e)
          enddo
+         print*,'pap(1)',pap(1)
+         stop
 
          call ax_e(ap2(1,e),p2(1,e),gf(1,1,e),h1(1,e),h2(k,1)
      $                                          ,bm1(1,1,1,e),ur,us,ut)
@@ -874,7 +876,7 @@ c
 c        if (ifdfrm(e)) then
          if (lxyz.gt.0) then
 
-           do i2=1,ly1,ly1-1  
+           do i2=1,ly1,ly1-1
            do i1=1,lx1,lx1-1
               d(1,i1,i2,e) = d(1,i1,i2,e)
      $            + gf(4,1,i1,i2,e) * dxtm1(1,1)*dytm1(i1,i1)
@@ -1245,7 +1247,7 @@ c$$$      enddo
 
 c-----------------------------------------------------------------------
       subroutine intp_rstd_acc(ju,u,mx,md,ndim,idir,jgl,jgt)
-      !$ACC ROUTINE SEQ
+!$ACC ROUTINE SEQ
 
       real    ju(1),u(1)
       real jgl(md**3),jgt(md**3)
@@ -1255,9 +1257,9 @@ c-----------------------------------------------------------------------
 
       !call get_int_ptr(i,mx,md) ! GLL-->GL pointer
       if(idir.eq.0) then
-        call specmpn_acc(ju,md,u,mx,jgl(1),jgt(1),ndim,w_local,ldw)
+         call specmpn_acc(ju,md,u,mx,jgl(1),jgt(1),ndim,w_local,ldw)
       else
-        call specmpn_acc(ju,mx,u,md,jgt(1),jgl(1),ndim,w_local,ldw)
+         call specmpn_acc(ju,mx,u,md,jgt(1),jgl(1),ndim,w_local,ldw)
       endif
 
       return
@@ -1266,7 +1268,7 @@ c-----------------------------------------------------------------------
 
 c-------------------------------------------------------------------------------
       subroutine ax_e_acc(w,u,g,h1,h2,b,ju,us,ut,jgl,jgt,nx,ny,nz,ndim) ! Local matrix-vector product
-      !$ACC ROUTINE SEQ
+!$ACC ROUTINE SEQ
 
       real w(nx*ny*nz),u(nx*ny*nz),g(3+3*(ndim-2),nx*ny*nz)
       real h1(nx*ny*nz),h2(nx*ny*nz),b(nx*ny*nz)
@@ -1275,13 +1277,13 @@ c-------------------------------------------------------------------------------
       nxq = nx+2               ! Number of quadrature points
 
       nxyzq = nxq**ndim
-      call intp_rstd_acc(ju,u,nx,nxq,ndim,0,jgt(1),jgl(1))
+      call intp_rstd_acc(ju,u,nx,nxq,ndim,0,jgl(1),jgt(1))
 
-      !$ACC LOOP SEQ
+!$ACC LOOP SEQ
       do i=1,nxyzq
-        ju(i)=ju(i)*h2(i)       !! h2 must be on the fine grid, w/ quad wts
+         ju(i)=ju(i)*h2(i)      !! h2 must be on the fine grid, w/ quad wts
       enddo
-      !$ACC END LOOP
+!$ACC END LOOP
 
       call intp_rstd_acc(w,ju,nx,nxq,ndim,1,jgl(1),jgt(1))
 
@@ -1320,7 +1322,8 @@ c
       equivalence (gf,g1m1)     ! layout to g1m1...g6m1
 
       parameter (ldg=lxd**3,lwkd=4*lxd*lxd)
-      common /dgrad/ jgl(ldg),jgt(ldg)
+      common /dgrad/ d(ldg),dt2(ldg),dg(ldg),dgt(ldg),jgl(ldg),jgt(ldg)
+     $     , wkd(lwkd)
       real jgl,jgt,tmp_sum
 
       integer ip,l,na,nb,nxq
@@ -1335,35 +1338,36 @@ c     $            acc_nek_present(Ct,1))
       pap(3)=0
 
       k=1
-
+      mx = lx1
+      md = lx1+2
+      i=0
       call get_int_ptr(i,mx,md) ! GLL-->GL pointer
 
-!     !$ACC COPY(ab,ba) !FIXME
+!!$ACC COPY(ab,ba) !FIXME
 
 
-      !$ACC PARALLEL LOOP PRESENT(b,a,ba,ab) GANG WORKER
-      !$ACC&              PRIVATE(w)
+!$ACC PARALLEL LOOP GANG WORKER
       do e=1,nelt
         call ax_e_acc(ap1(1,e),p1(1,e),gf(1,1,e),h1(1,e),h2(k,1)
-     $       ,bm1(1,1,1,e),ur,us,ut,jgl,jgt,lx1,ly1,lz1,ldim)
+     $      ,bm1(1,1,1,e),ur,us,ut,jgl,jgt,lx1,ly1,lz1,ldim)
 
         tmp_sum = pap(1)
-        !$ACC LOOP VECTOR REDUCTION(+:tmp_sum)
+!$ACC LOOP VECTOR REDUCTION(+:tmp_sum)
         do i=1,lx
           tmp_sum=tmp_sum+ap1(i,e)*p1(i,e)
         enddo
-        !$ACC END LOOP
+!$ACC END LOOP
         pap(1) = tmp_sum
 
         call ax_e_acc(ap2(1,e),p2(1,e),gf(1,1,e),h1(1,e),h2(k,1)
      $       ,bm1(1,1,1,e),ur,us,ut,jgl,jgt,lx1,ly1,lz1,ldim)
 
         tmp_sum = pap(2)
-        !$ACC LOOP VECTOR REDUCTION(+:tmp_sum)
+!$ACC LOOP VECTOR REDUCTION(+:tmp_sum)
         do i=1,lx
           tmp_sum = tmp_sum + ap2(i,e)*p2(i,e)
         enddo
-        !$ACC END LOOP
+!$ACC END LOOP
         pap(2) = tmp_sum
 
         call ax_e_acc(ap3(1,e),p3(1,e),gf(1,1,e),h1(1,e),h2(k,1)
@@ -1371,16 +1375,16 @@ c     $            acc_nek_present(Ct,1))
 
 
         tmp_sum = pap(3)
-        !$ACC LOOP VECTOR REDUCTION(+:tmp_sum)
+!$ACC LOOP VECTOR REDUCTION(+:tmp_sum)
         do i=1,lx
           tmp_sum = tmp_sum + ap3(i,e)*p3(i,e)
         enddo
-        !$ACC END LOOP
+!$ACC END LOOP
         pap(3) = tmp_sum
 
         k=k+nxq*nxq*nxq
       enddo
-      !$ACC END PARALLEL LOOP
+!$ACC END PARALLEL LOOP
 
       return
       end
