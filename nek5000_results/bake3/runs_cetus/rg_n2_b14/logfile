@@ -18,14 +18,14 @@
  Number of processors: 16384
  REAL    wdsize      : 8
  INTEGER wdsize      : 4
- Timer accuracy      : 1.78E-07
- Reading /home/motten/bake3/runs/rg_n2_b14/b14.rea                                                                                           
+ Timer accuracy      : 1.71E-07
+ Reading /home/motten/nekcem_results/nek5000_results/bake3/runs_cetus/rg_n2_b14/b14.rea                                                      
  WARNING: lgmres might be too low!
- Reading /home/motten/bake3/runs/rg_n2_b14/b14.re2                                                                                           
+ Reading /home/motten/nekcem_results/nek5000_results/bake3/runs_cetus/rg_n2_b14/b14.re2                                                      
  byte swap: T -0.2931277218E+36 6.543210030
 
  mapping elements to processors
- Reading /home/motten/bake3/runs/rg_n2_b14/b14.map                                                                                           
+ Reading /home/motten/nekcem_results/nek5000_results/bake3/runs_cetus/rg_n2_b14/b14.map                                                      
  element load imbalance:  0 1 1
  done :: mapping elements to processors
   
@@ -53,7 +53,7 @@ done :: read .re2 file    .42     sec
   
  nelgt/nelgv/lelt:       16384       16384         134
  lx1  /lx2  /lx3 :           2           2           2
- done :: read .rea file    1.1685     sec
+ done :: read .rea file    1.1663     sec
 
  setup mesh topology
    Right-handed check complete for   16384 elements. OK.
@@ -61,13 +61,9 @@ done :: read .re2 file    .42     sec
  done :: usrsetvert
 
 gs_setup: 18505 unique labels shared
-   pairwise times (avg, min, max): 0.000222148 0.000194077 0.000257174
-   crystal router                : 0.000243697 0.0002423 0.00024611
-   all reduce                    : 0.00058113 0.000576765 0.000589343
-   used all_to_all method: crystal router
-   handle bytes (avg, min, max): 7065.17 6220 8620
-   buffer bytes (avg, min, max): 482.969 352 528
-   setupds time 3.5211E-02 seconds   0  2       18513       16384
+   handle bytes (avg, min, max): 1312.01 628 1396
+   buffer bytes (avg, min, max): 833.242 304 896
+   setupds time 1.5547E-02 seconds   0  2       18513       16384
  8  max multiplicity
  done :: setup mesh topology
   
@@ -146,34 +142,34 @@ gs_setup: 18505 unique labels shared
 gridpoints unique/tot:         18513       131072
   dofs: 14415 18513
   
- Initialization successfully completed    1.2503     sec
+ Initialization successfully completed    1.2268     sec
 
  nsteps=0 -> skip time loop
  running solver in post processing mode
 
  call userchk
 GFM max:  7.8125E-03  3.1250E-02  3.1250E-02  0.0000E+00  0.0000E+00  0.0000E+00
-  2    16384  1.4209E-06  1.4209E-06  1.4209E-06  error v       21
-  2    16384  1.4209E-06  1.4209E-06  1.4209E-06  error a       21
-  2    16384  1.4209E-06  1.4209E-06  1.4209E-06  error b       21
-  2    16384  1.4209E-06  1.4209E-06  1.4209E-06  error c       21
-case scalar:  16384  1    1     16384         16384      1  21  6.47737E-03  2.52942E+06  3.08446E-04  3.08446E-04
-case vector:  16384  1    1     16384         16384      1  21  3.23019E-03  5.07215E+06  1.53818E-04  1.53818E-04
+  2    16384  8.9890E-14  8.9890E-14  8.9890E-14  error v      199
+  2    16384  8.9890E-14  8.9890E-14  8.9890E-14  error a      199
+  2    16384  8.9890E-14  8.9890E-14  8.9890E-14  error b      199
+  2    16384  8.9890E-14  8.9890E-14  8.9890E-14  error c      199
+case scalar:  16384  1    1     16384         16384      1 199  5.03902E-02  3.25143E+05  2.53217E-04  2.53217E-04
+case vector:  16384  1    1     16384         16384      1 199  1.89766E-02  8.63380E+05  9.53598E-05  9.53598E-05
 EXIT: quit after cggov          1
   
 call exitt: dying ...
   
 backtrace(): obtained 8 stack frames.
-[0x11324ec]
-[0x120c66c]
-[0x120c0d0]
-[0x1004cfc]
-[0x1005dc4]
-[0x10050bc]
-[0x182cbe8]
-[0x182cee4]
+[0x113282c]
+[0x120c9ac]
+[0x120c410]
+[0x1004d1c]
+[0x1005df4]
+[0x10050ec]
+[0x182cf28]
+[0x182d224]
   
-total elapsed time             :   1.28729E+00 sec
+total elapsed time             :   1.44226E+00 sec
 total solver time incl. I/O    :   0.00000E+00 sec
 time/timestep                  :   0.00000E+00 sec
 CPU seconds/timestep/gridpt    :   0.00000E+00 sec

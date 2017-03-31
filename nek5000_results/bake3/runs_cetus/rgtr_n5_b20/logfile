@@ -1,0 +1,178 @@
+/----------------------------------------------------------\
+|      _   __ ______ __ __  ______  ____   ____   ____     |
+|     / | / // ____// //_/ / ____/ / __ \/ __ \/ __ \   |
+|    /  |/ // __/  / ,<   /___ \ / / / // / / // / / /    |
+|   / /|  // /___ / /| | ____/ / / /_/ // /_/ // /_/ /     |
+|  /_/ |_//_____//_/ |_|/_____/  \___/ \___/ \___/      |
+|                                                          |
+|----------------------------------------------------------|
+|                                                          |
+| NEK5000:  Open Source Spectral Element Solver            |
+| COPYRIGHT (c) 2008-2017 UCHICAGO ARGONNE, LLC            |
+| Version:  17.0.0                                         |
+| Web:      http://nek5000.mcs.anl.gov                     |
+|                                                          |
+\----------------------------------------------------------/
+                                                              
+
+ Number of processors: 16384
+ REAL    wdsize      : 8
+ INTEGER wdsize      : 4
+ Timer accuracy      : 1.73E-07
+ Reading /home/motten/nekcem_results/nek5000_results/bake3/runs_cetus/rgtr_n5_b20/b20.rea                                                    
+ WARNING: lgmres might be too low!
+ Reading /home/motten/nekcem_results/nek5000_results/bake3/runs_cetus/rgtr_n5_b20/b20.re2                                                    
+ byte swap: T -0.2931277218E+36 6.543210030
+
+ mapping elements to processors
+ Reading /home/motten/nekcem_results/nek5000_results/bake3/runs_cetus/rgtr_n5_b20/b20.map                                                    
+ element load imbalance:  0 64 64
+ done :: mapping elements to processors
+  
+   reading mesh 
+   reading bc for ifld 1
+done :: read .re2 file    22.     sec
+ 0  objects found
+ 118   Parameters from file:
+   1      1.00000     p001 DENSITY
+   2     -100.000     p002 VISCOS
+   7      1.00000     p007 RHOCP
+   8      1.00000     p008 CONDUCT
+  12    -0.500000E-02 p012 DT
+  21     0.100000E-05 p021 DIVERGENCE
+  22     0.100000E-07 p022 HELMHOLTZ
+  24     0.100000E-09 p024 TOLREL
+  25     0.100000E-09 p025 TOLABS
+  26     0.250000     p026 COURANT/NTAU
+  27      2.00000     p027 TORDER
+  59      0.00000     p059 !=0 --> full Jac. eval. for each el.
+  66      6.00000     p066 output : <0=ascii, else binary
+  67      6.00000     p067 restart: <0=ascii, else binary
+  99      3.00000     p099 dealiasing: <0--> off/3--> old/4--> new
+ 103     0.500000E-01 p103 weight of stabilizing filter (.01)
+  
+ nelgt/nelgv/lelt:     1048576     1048576         134
+ lx1  /lx2  /lx3 :           5           5           5
+ done :: read .rea file    52.674     sec
+
+ setup mesh topology
+   Right-handed check complete for 1048576 elements. OK.
+   setvert3d:   5    39322881    67634433    39322881    39322881
+ call usrsetvert
+ done :: usrsetvert
+
+gs_setup: 13904661 unique labels shared
+   handle bytes (avg, min, max): 103256 82724 110676
+   buffer bytes (avg, min, max): 35271.6 17536 43520
+   setupds time 7.0993E-02 seconds   0  5    39322881     1048576
+ 8  max multiplicity
+ done :: setup mesh topology
+  
+ call usrdat
+ done :: usrdat
+
+ generate geometry data
+ NOTE: All elements deformed , param(59) ^=0
+ done :: generate geometry data
+  
+ call usrdat2
+ done :: usrdat2
+
+ regenerate geometry data 1
+ NOTE: All elements deformed , param(59) ^=0
+ done :: regenerate geometry data 1
+  
+ verify mesh topology
+ 0.000000000000000000E+00 1.00000000000000000  Xrange
+ 0.000000000000000000E+00 1.00000000000000000  Yrange
+ 0.000000000000000000E+00 1.00000000000000000  Zrange
+ done :: verify mesh topology
+  
+ IFTRAN   = T
+ IFFLOW   = T
+ IFHEAT   = F
+ IFSPLIT  = T
+ IFLOMACH = F
+ IFUSERVP = F
+ IFUSERMV = F
+ IFSTRS   = F
+ IFCHAR   = F
+ IFCYCLIC = F
+ IFAXIS   = F
+ IFMVBD   = F
+ IFMELT   = F
+ IFMODEL  = F
+ IFKEPS   = F
+ IFMOAB   = F
+ IFNEKNEK = F
+ IFSYNC   = T
+   
+ IFVCOR   = T
+ IFINTQ   = F
+ IFCWUZ   = F
+ IFSWALL  = F
+ IFGEOM   = F
+ IFSURT   = F
+ IFWCNO   = F
+   
+ IFTMSH for field 1    =  F
+ IFADVC for field 1    =  T
+ IFNONL for field 1    =  F
+   
+ Dealiasing enabled, lxd= 7
+ verify mesh topology
+ 0.000000000000000000E+00 1.00000000000000000  Xrange
+ 0.000000000000000000E+00 1.00000000000000000  Yrange
+ 0.000000000000000000E+00 1.00000000000000000  Zrange
+ done :: verify mesh topology
+  
+ call usrdat3
+ done :: usrdat3
+
+ set initial conditions
+ nekuic (1) for ifld  1
+ call nekuic for vel  
+ xyz min     .00000E+00   .00000E+00   .00000E+00
+ uvwpt min   .00000E+00   .00000E+00   .00000E+00   .00000E+00   .00000E+00
+ PS min      .99000E+22
+ xyz max     1.0000       1.0000       1.0000    
+ uvwpt max   .00000E+00   .00000E+00   .00000E+00   .00000E+00   .00000E+00
+ PS max     -.99000E+22
+ done :: set initial conditions
+  
+gridpoints unique/tot:      67634433    131072000
+  dofs: 66585855 67634433
+  
+ Initialization successfully completed    52.874     sec
+
+ nsteps=0 -> skip time loop
+ running solver in post processing mode
+
+ call userchk
+GFM max:  7.0233E-04  2.8093E-03  2.8093E-03  1.6286E-16  1.6286E-16  4.2267E-16
+  5  1048576  5.8407E-14  5.8407E-14  5.8407E-14  error v      200
+  5  1048576  5.8407E-14  5.8407E-14  5.8407E-14  error a      200
+  5  1048576  5.8407E-14  5.8407E-14  5.8407E-14  error b      200
+  5  1048576  5.8407E-14  5.8407E-14  5.8407E-14  error c      200
+case scalar:  16384  4   64   1048576      67108864   4096 200  9.97760E-01  6.72595E+07  4.98880E-03  1.21797E-06
+case vector:  16384  4   64   1048576      67108864   4096 200  1.01710E+00  6.59804E+07  5.08552E-03  1.24158E-06
+EXIT: quit after cggov          4
+  
+call exitt: dying ...
+  
+backtrace(): obtained 8 stack frames.
+[0x11386ac]
+[0x1212e9c]
+[0x1212900]
+[0x10050e0]
+[0x10061c4]
+[0x10054bc]
+[0x1885cc8]
+[0x1885fc4]
+  
+total elapsed time             :   5.89481E+01 sec
+total solver time incl. I/O    :   0.00000E+00 sec
+time/timestep                  :   0.00000E+00 sec
+CPU seconds/timestep/gridpt    :   0.00000E+00 sec
+max resident memory            :   1.33456E+02 MB
+

@@ -1,0 +1,81 @@
+Data for MPI rank 12369 of 16384
+Times and statistics from MPI_Init() to MPI_Finalize().
+-----------------------------------------------------------------
+MPI Routine                  #calls     avg. bytes      time(sec)
+-----------------------------------------------------------------
+MPI_Comm_size                     3            0.0          0.000
+MPI_Comm_rank                     3            0.0          0.000
+MPI_Isend                     22661           79.6          0.088
+MPI_Recv                         11           77.1          0.449
+MPI_Irecv                     22661           79.6          0.018
+MPI_Waitall                    1029            0.0          0.102
+MPI_Bcast                        32         9661.1          1.899
+MPI_Barrier                     107            0.0          0.051
+MPI_Scan                          3            4.0          0.002
+MPI_Allreduce                  3001           97.2          1.433
+-----------------------------------------------------------------
+MPI task 12369 of 16384 had the median communication time.
+total communication time = 4.043 seconds.
+total elapsed time       = 4.311 seconds.
+heap memory used         = 11.008 MBytes.
+heap memory available    = 420.977 MBytes.
+
+-----------------------------------------------------------------
+Message size distributions:
+
+MPI_Isend                 #calls    avg. bytes      time(sec)
+                              21           0.0          0.000
+                              98           4.0          0.001
+                            2517           8.0          0.008
+                            7102          24.0          0.023
+                            1887          40.0          0.008
+                            8930          95.6          0.038
+                             822         215.6          0.004
+                            1252         360.8          0.006
+                              13         778.5          0.000
+                               6        1362.0          0.000
+                              13        2833.8          0.000
+
+MPI_Recv                  #calls    avg. bytes      time(sec)
+                               4           4.0          0.232
+                               2           8.0          0.217
+                               1          16.0          0.000
+                               4         200.0          0.000
+
+MPI_Irecv                 #calls    avg. bytes      time(sec)
+                              21           0.0          0.000
+                              98           4.0          0.000
+                            2517           8.0          0.002
+                            7102          24.0          0.005
+                            1887          40.0          0.002
+                            8930          95.6          0.007
+                             824         216.0          0.001
+                            1247         360.7          0.001
+                              18         800.0          0.000
+                               5        1224.0          0.000
+                              11        2925.8          0.000
+                               1        4280.0          0.000
+
+MPI_Bcast                 #calls    avg. bytes      time(sec)
+                              17           4.0          0.099
+                               1           8.0          0.000
+                               1          16.0          0.000
+                               1          32.0          0.000
+                               1          72.0          0.000
+                               3         152.0          0.000
+                               5        1486.4          0.000
+                               1       13200.0          0.000
+                               1       25728.0          0.000
+                               1      262144.0          1.800
+
+MPI_Scan                  #calls    avg. bytes      time(sec)
+                               3           4.0          0.002
+
+MPI_Allreduce             #calls    avg. bytes      time(sec)
+                              26           4.0          1.167
+                            1883           8.0          0.057
+                               1          16.0          0.001
+                             600          24.0          0.025
+                               2          44.0          0.002
+                             489         536.0          0.181
+
