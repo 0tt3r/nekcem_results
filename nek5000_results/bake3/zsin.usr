@@ -435,7 +435,8 @@ c        tolerance check here
          if (nio.eq.0) write(6,1) ifield,istep,iter,nx,(wv(k),k=1,1)
    1     format(i2,i9,i5,i4,1p1e12.4,' cggos')
 
-         if (rbnorm.lt.tol) then
+!     if (rbnorm.lt.tol) then
+         if(iter.eq.maxit) then
             ifin = iter
             if (nio.eq.0) then
                if (matmod.ge.0) write(6,3000) istep,ifin,rbnorm,tol
@@ -462,7 +463,7 @@ c        tolerance check here
 
 
  1000 continue
- 
+
       if (matmod.ge.0.and.nio.eq.0) write (6,3001) istep,iter,rbnorm,tol
       if (matmod.lt.0.and.nio.eq.0) write (6,3011) istep,iter,rbnorm,tol
 
@@ -484,8 +485,8 @@ c        tolerance check here
 c-----------------------------------------------------------------------
       subroutine cggov(u1,u2,u3,r1,r2,r3,h1,h2,rmult,binv,tin,maxit)
 
-c     Vector conjugate gradient iteration for solution of uncoupled 
-c     Helmholtz equations 
+c     Vector conjugate gradient iteration for solution of uncoupled
+c     Helmholtz equations
 
       include 'SIZE'
       include 'TOTAL'
@@ -576,7 +577,8 @@ c        tolerance check here
          if (nio.eq.0) write(6,1) ifield,istep,iter,nx,(wv(k),k=1,3)
    1     format(i2,i9,i5,i4,1p3e12.4,' cggov')
 
-         if (rbnorm.lt.tol) then
+!     if (rbnorm.lt.tol) then
+      if(iter.eq.maxit) then
             ifin = iter
             if (nio.eq.0) then
               if (matmod.ge.0) write(6,3000) istep,ifin,rbnorm,tol
@@ -613,7 +615,7 @@ c        tolerance check here
 
 
  1000 continue
- 
+
       if (matmod.ge.0.and.nio.eq.0) write (6,3001) istep,iter,rbnorm,tol
       if (matmod.lt.0.and.nio.eq.0) write (6,3011) istep,iter,rbnorm,tol
 
@@ -983,9 +985,9 @@ c     call dsavg(e1)
 
       call opcopy    (t1,t2,t3,r1,r2,r3) ! Save RHS
 
-      tol       = 1.e-6 
+      tol       = 1.e-6
       param(22) = tol
-      maxit     = 100
+      maxit     = 200
 
       nio    = -99 ! Turn off i/o to stdout
 
